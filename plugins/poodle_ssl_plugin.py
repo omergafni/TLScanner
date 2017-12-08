@@ -11,7 +11,7 @@ class PoodleScanCommand(PluginScanCommand):
 
     @classmethod
     def get_cli_argument(cls):
-        return 'poodle'
+        return 'poodle_ssl'
 
     @classmethod
     def get_title(cls):
