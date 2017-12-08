@@ -16,6 +16,7 @@ from sslyze.plugins.session_resumption_plugin import SessionResumptionRateScanCo
 from sslyze.synchronous_scanner import SynchronousScanner
 import datetime
 import sys
+from plugins.poodle_ssl_plugin import PoodleScanCommand
 
 
 def print_results(scan_results, out_file):
@@ -55,7 +56,7 @@ def main():
     """
     Creating an output file
     """
-    output = open(hostname, "w")
+    output = open("output/"+hostname, "w")
     output.write("##############################################\n")
     output.write("Output result for host: {}\n".format(hostname))
     output.write("Start {}\n".format(datetime.datetime.now()))
@@ -80,6 +81,7 @@ def main():
     """
     Testing vulnerabilities:
     """
+    run_command(scanner, server_info, PoodleScanCommand(), output)
     run_command(scanner, server_info, HeartbleedScanCommand(), output)
     run_command(scanner, server_info, OpenSslCcsInjectionScanCommand(), output)
     run_command(scanner, server_info, CompressionScanCommand(), output)
