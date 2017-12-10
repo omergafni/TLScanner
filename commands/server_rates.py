@@ -104,3 +104,17 @@ class CipherStrengthScore(Enum):
    u) WoSign/StartCom certificates distrusted, will get 'T' grade.
     
 """
+
+"""
+For these reasons, any of the following certificate issues immediately result in a zero score:
+
+Domain name mismatch                                                                    **V**
+Certificate not yet valid                                                               **V**
+Certificate expired                                                                     **V**
+Use of a self-signed certificate
+Use of a certificate that is not trusted (unknown CA or some other validation error)    **V**
+Use of a revoked certificate
+Insecure certificate signature (MD2 or MD5)
+Insecure key
+
+"""
