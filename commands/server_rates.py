@@ -24,34 +24,60 @@ class Grades(Enum):
     E = 6
     F = 7
     T = 8        # site certificate is not trusted
-"""
-1) Protocol support:
-    SSL 2.0:	0
-    SSL 3.0:	80
-    TLS 1.0:	90
-    TLS 1.1:	95
-    TLS 1.2:	100
 
-    Total score: best protocol score + worst protocol score, divided by 2.
-    
-2) Key exchange:
-    Weak key (Debian OpenSSL flaw): 	                         0
-    Anonymous key exchange (no authentication)	                 0
-    Key or DH parameter strength < 512 bits	                     20
-    Exportable key exchange (limited to 512 bits)	             40
-    Key or DH parameter strength < 1024 bits (e.g., 512)	     40
-    Key or DH parameter strength < 2048 bits (e.g., 1024)	     80
-    Key or DH parameter strength < 4096 bits (e.g., 2048)	     90
-    Key or DH parameter strength >= 4096 bits (e.g., 4096)	     100
 
-3) Cipher strength:
-    0 bits (no encryption)	        0
-    < 128 bits (e.g., 40, 56)	    20
-    < 256 bits (e.g., 128, 168)	    80
-    >= 256 bits (e.g., 256)	        100
-    
-    Total score: strongest cipher score + weakest cipher score, divided by 2.
-"""
+class ProtocolScore(Enum):
+    """
+    1) Protocol support:
+        SSL 2.0:	0
+        SSL 3.0:	80
+        TLS 1.0:	90
+        TLS 1.1:	95
+        TLS 1.2:	100
+
+        Total score: best protocol score + worst protocol score, divided by 2.
+    """
+    SSLv20 = 0
+    SSLv30 = 80
+    TLSv10 = 90
+    TLSv11 = 95
+    TLSv12 = 100
+
+
+class KeyExchangeScore(Enum):
+    """
+    2) Key exchange:
+        Weak key (Debian OpenSSL flaw): 	                         0
+        Anonymous key exchange (no authentication)	                 0
+        Key or DH parameter strength < 512 bits	                     20
+        Exportable key exchange (limited to 512 bits)	             40
+        Key or DH parameter strength < 1024 bits (e.g., 512)	     40
+        Key or DH parameter strength < 2048 bits (e.g., 1024)	     80
+        Key or DH parameter strength < 4096 bits (e.g., 2048)	     90
+        Key or DH parameter strength >= 4096 bits (e.g., 4096)	     100
+    """
+    LessThan512 = 20
+    LessThan1024 = 40
+    LessThan2048 = 80
+    LessThan4096 = 90
+    EqualOrGreaterThan4096 = 100
+
+
+class CipherStrengthScore(Enum):
+    """
+    3) Cipher strength:
+        0 bits (no encryption)	        0
+        < 128 bits (e.g., 40, 56)	    20
+        < 256 bits (e.g., 128, 168)	    80
+        >= 256 bits (e.g., 256)	        100
+
+        Total score: strongest cipher score + weakest cipher score, divided by 2.
+    """
+    NoEncryption = 0
+    LessThan128 = 20
+    LessThan256 = 80
+    EqualOrGraterThan256 = 100
+
 
 """
 4) Mandatory rates:
