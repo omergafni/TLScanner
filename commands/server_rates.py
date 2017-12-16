@@ -97,7 +97,7 @@ class CipherStrengthScore(Enum):
    n) Cap to B if SSL 3 is supported.
    o) (F) if server's best protocol is SSL 3.0
    p) Cap to C if not supporting TLS 1.2.
-   q) Vulnerability to DROWN: servers get an F.
+   q) Vulnerability to DROWN: servers get an F. 
    r) If vulnerable to CVE-2016-2107 (Padding oracle in AES-NI CBC MAC check) it will be given F.
    s) SHA1 certificates are now longer trusted (T).
    t) If vulnerable to the Ticketbleed (CVE-2016-9244), it will be given F.

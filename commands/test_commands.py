@@ -4,6 +4,7 @@ from datetime import datetime
 from cryptography.hazmat.primitives.asymmetric.ec import EllipticCurvePublicKey
 from sslyze.plugins.certificate_info_plugin import CertificateInfoScanCommand
 from commands.server_rates import ProtocolScore, KeyExchangeScore, CipherStrengthScore
+from plugins.drown_plugin import DrownScanCommand
 from plugins.poodle_ssl_plugin import PoodleSslScanCommand
 
 
@@ -162,20 +163,31 @@ class PoodleSslTestCommand(TestCommand):
         super().__init__(PoodleSslScanCommand())
 
     def get_result_as_json(self):
-
         result = {}
-
         if self.scan_result is None:
             raise ScanResultUnavailable()
         else:
             if self.scan_result.is_vulnerable_to_poodle_ssl:
                 result["poodle_vulnerability"] = "cap to C"
+            else:
+                result["poodle_vulnerability"] = "OK"
+
         return json.dumps(result)
 
 
 class DrownTestCommand(TestCommand):
+
+    def __init__(self):
+        super().__init__(DrownScanCommand())
+
     def get_result_as_json(self):
-        pass
+        result = {}
+        if self.scan_result.is_vulnerable_to_drown_attack:
+            result["drown_vulnerability"] = "grade F"
+        else:
+            result["drown_vulnerability"] = "OK"
+
+        return json.dumps(result)
 
 
 class HeartbleedTestCommand(TestCommand):

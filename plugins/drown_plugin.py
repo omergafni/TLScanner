@@ -57,7 +57,7 @@ class DrownScanResult(PluginScanResult):
 
     def __init__(self, server_info, scan_command, is_vulnerable_to_drown_attack):
         super(DrownScanResult, self).__init__(server_info, scan_command)
-        self.is_vulnerable_to_drown_attack= is_vulnerable_to_drown_attack
+        self.is_vulnerable_to_drown_attack = is_vulnerable_to_drown_attack
 
     def as_text(self):
         drown_txt = 'VULNERABLE - Server is vulnerable to DROWN (CVE-2016-0800)' \
