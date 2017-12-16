@@ -16,7 +16,7 @@ from sslyze.plugins.session_resumption_plugin import SessionResumptionRateScanCo
 from sslyze.synchronous_scanner import SynchronousScanner
 import datetime
 import sys
-from plugins.poodle_ssl_plugin import PoodleScanCommand
+from plugins.poodle_ssl_plugin import PoodleSslScanCommand
 from plugins.drown_plugin import DrownScanCommand
 
 
@@ -84,7 +84,7 @@ def main():
     Testing vulnerabilities:
     """
     run_command(scanner, server_info, DrownScanCommand(), output)
-    run_command(scanner, server_info, PoodleScanCommand(), output)
+    run_command(scanner, server_info, PoodleSslScanCommand(), output)
     run_command(scanner, server_info, HeartbleedScanCommand(), output)
     run_command(scanner, server_info, OpenSslCcsInjectionScanCommand(), output)
     run_command(scanner, server_info, CompressionScanCommand(), output)

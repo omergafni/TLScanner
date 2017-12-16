@@ -4,7 +4,7 @@ from sslyze.plugins.plugin_base import PluginScanCommand, PluginScanResult
 from sslyze.utils.ssl_connection import SSLHandshakeRejected
 
 
-class PoodleScanCommand(PluginScanCommand):
+class PoodleSslScanCommand(PluginScanCommand):
     """
     Test the server(s) for the POODLE SSL vulnerability (CVE-2014-3566).
     """
@@ -25,7 +25,7 @@ class PoodleSslPlugin(plugin_base.Plugin):
 
     @classmethod
     def get_available_commands(cls):
-        return [PoodleScanCommand]
+        return [PoodleSslScanCommand]
 
     def process_task(self, server_info, scan_command):
 

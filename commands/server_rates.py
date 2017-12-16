@@ -29,11 +29,11 @@ class Grades(Enum):
 class ProtocolScore(Enum):
     """
     1) Protocol support:
-        SSL 2.0:	0
-        SSL 3.0:	80
-        TLS 1.0:	90
-        TLS 1.1:	95
-        TLS 1.2:	100
+        SSL 2.0:	0       **V**
+        SSL 3.0:	80      **V**
+        TLS 1.0:	90      **V**
+        TLS 1.1:	95      **V**
+        TLS 1.2:	100     **V**
 
         Total score: best protocol score + worst protocol score, divided by 2.
     """
@@ -49,12 +49,12 @@ class KeyExchangeScore(Enum):
     2) Key exchange:
         Weak key (Debian OpenSSL flaw): 	                         0
         Anonymous key exchange (no authentication)	                 0
-        Key or DH parameter strength < 512 bits	                     20
+        Key or DH parameter strength < 512 bits	                     20     **V**
         Exportable key exchange (limited to 512 bits)	             40
-        Key or DH parameter strength < 1024 bits (e.g., 512)	     40
-        Key or DH parameter strength < 2048 bits (e.g., 1024)	     80
-        Key or DH parameter strength < 4096 bits (e.g., 2048)	     90
-        Key or DH parameter strength >= 4096 bits (e.g., 4096)	     100
+        Key or DH parameter strength < 1024 bits (e.g., 512)	     40     **V**
+        Key or DH parameter strength < 2048 bits (e.g., 1024)	     80     **V**
+        Key or DH parameter strength < 4096 bits (e.g., 2048)	     90     **V**
+        Key or DH parameter strength >= 4096 bits (e.g., 4096)	     100    **V**
     """
     LessThan512 = 20
     LessThan1024 = 40
@@ -91,8 +91,8 @@ class CipherStrengthScore(Enum):
    h) Keys below 2048 bits (e.g., 1024) are now considered weak, and the grade capped at B.
    i) Keys under 1024 bits are now considered insecure (F).
    j) MD5 certificate signatures is not allowed (F).
-   k) Servers that use SHA1 certificates can't get an A+.
-   l) Cap to C if vulnerable to POODLE.
+   k) Servers that use SHA1 certificates can't get an A+. **V**
+   l) Cap to C if vulnerable to POODLE. **V**
    m) Don’t award A+ to servers that don’t support TLS_FALLBACK_SCSV.
    n) Cap to B if SSL 3 is supported.
    o) (F) if server's best protocol is SSL 3.0

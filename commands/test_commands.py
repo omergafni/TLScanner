@@ -1,12 +1,10 @@
 import json
 from abc import abstractmethod
 from datetime import datetime
-
 from cryptography.hazmat.primitives.asymmetric.ec import EllipticCurvePublicKey
 from sslyze.plugins.certificate_info_plugin import CertificateInfoScanCommand
-from sslyze.plugins.utils.certificate_utils import CertificateUtils
-
-from commands.server_rates import ProtocolScore, KeyExchangeScore
+from commands.server_rates import ProtocolScore, KeyExchangeScore, CipherStrengthScore
+from plugins.poodle_ssl_plugin import PoodleSslScanCommand
 
 
 class TestCommand(object):
@@ -92,27 +90,107 @@ class CertificateInfoTestCommand(TestCommand):
 
 
 class CipherSuitesTestCommand(TestCommand):
+
+    protocol_scores = {"sslv2": ProtocolScore.SSLv20.value, "sslv3": ProtocolScore.SSLv30.value,
+                       "tlsv1": ProtocolScore.TLSv10.value, "tlsv1_1": ProtocolScore.TLSv11.value,
+                       "tlsv1_2": ProtocolScore.TLSv12.value}
+
+    cipher_strength_scores = {"0": CipherStrengthScore.NoEncryption.value,
+                              "<128": CipherStrengthScore.LessThan128.value,
+                              "<256": CipherStrengthScore.LessThan256.value,
+                              ">=256": CipherStrengthScore.EqualOrGraterThan256.value}
+
     def __init__(self, cipher_scan_command):
         super().__init__(cipher_scan_command)
+
+    @classmethod
+    def get_cipher_strength_score(cls, min_cipher_key, max_cipher_key):
+        min_score = -1
+        max_score = -1
+        if min_cipher_key == 0:
+            min_score = cls.cipher_strength_scores["0"]
+        elif min_cipher_key < 128:
+            min_score = cls.cipher_strength_scores["<128"]
+        elif min_cipher_key < 256:
+            min_score = cls.cipher_strength_scores["<256"]
+        elif min_cipher_key >= 256:
+            min_score = cls.cipher_strength_scores[">=256"]
+
+        if max_cipher_key == 0:
+            max_score = cls.cipher_strength_scores["0"]
+        elif max_cipher_key < 128:
+            max_score = cls.cipher_strength_scores["<128"]
+        elif max_cipher_key < 256:
+            max_score = cls.cipher_strength_scores["<256"]
+        elif max_cipher_key >= 256:
+            max_score = cls.cipher_strength_scores[">=256"]
+
+        if min_score != -1 and max_score != -1:
+            return (max_score + min_score) / 2
+        else:
+            raise CipherStrengthScoreUnavailable()
 
     def get_result_as_json(self):
 
         result = {}
-        scores = {"sslv2": ProtocolScore.SSLv20.value, "sslv3": ProtocolScore.SSLv30.value,
-                  "tlsv1": ProtocolScore.TLSv10.value, "tlsv1_1": ProtocolScore.TLSv11.value,
-                  "tlsv1_2": ProtocolScore.TLSv12.value}
+        supported_cipher_key_sizes = []
 
         if self.scan_result is None:
             raise ScanResultUnavailable()
         else:
             if len(self.scan_result.accepted_cipher_list) > 0:
+
+                # Getting cipher suite score
                 cipher_name = self.scan_command.get_cli_argument()
-                result[cipher_name + ' score'] = scores[cipher_name]
+                result[cipher_name + '_score'] = self.protocol_scores[cipher_name]
+
+                # Getting cipher strength score
+                for cipher in self.scan_result.accepted_cipher_list:
+                    supported_cipher_key_sizes.append(cipher.key_size)
+                cipher_strength_score = self.get_cipher_strength_score(min(supported_cipher_key_sizes),
+                                                                       max(supported_cipher_key_sizes))
+                result["cipher_strength_score"] = cipher_strength_score
             else:
                 pass  # No score to be added
 
         return json.dumps(result)
 
 
+class PoodleSslTestCommand(TestCommand):
+
+    def __init__(self):
+        super().__init__(PoodleSslScanCommand())
+
+    def get_result_as_json(self):
+
+        result = {}
+
+        if self.scan_result is None:
+            raise ScanResultUnavailable()
+        else:
+            if self.scan_result.is_vulnerable_to_poodle_ssl:
+                result["poodle_vulnerability"] = "cap to C"
+        return json.dumps(result)
+
+
+class DrownTestCommand(TestCommand):
+    def get_result_as_json(self):
+        pass
+
+
+class HeartbleedTestCommand(TestCommand):
+    def get_result_as_json(self):
+        pass
+
+
+class OpenSslCcsInjectionTestCommand(TestCommand):
+    def get_result_as_json(self):
+        pass
+
+
 class ScanResultUnavailable(Exception):
+    pass
+
+
+class CipherStrengthScoreUnavailable(Exception):
     pass
