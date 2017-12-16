@@ -81,23 +81,23 @@ class CipherStrengthScore(Enum):
 
 """
 4) Mandatory rates:
-   a) SSL 2.0 is not allowed (F). **V**
+   a) **V** SSL 2.0 is not allowed (F). **V**
    b) Insecure renegotiation is not allowed (F).
    c) Vulnerability to the BEAST attack caps the grade at B.
    d) Vulnerability to the CRIME attack caps the grade at B.
    e) Support for TLS 1.2 is now required to get the A grade. Without, the grade is capped a B.
-   f) If vulnerable to the Heartbleed attack, it will be given F.
-   g) If vulnerable to the OpenSSL CVE-2014-0224 vulnerability, it will be given F.
+   f) **V** If vulnerable to the Heartbleed attack, it will be given F. **V**
+   g) **V** If vulnerable to the OpenSSL CVE-2014-0224 vulnerability, it will be given F. **V**
    h) Keys below 2048 bits (e.g., 1024) are now considered weak, and the grade capped at B.
    i) Keys under 1024 bits are now considered insecure (F).
    j) MD5 certificate signatures is not allowed (F).
-   k) Servers that use SHA1 certificates can't get an A+. **V**
-   l) Cap to C if vulnerable to POODLE. **V**
+   k) **V** Servers that use SHA1 certificates can't get an A+. **V**
+   l) **V** Cap to C if vulnerable to POODLE. **V**
    m) Don’t award A+ to servers that don’t support TLS_FALLBACK_SCSV.
    n) Cap to B if SSL 3 is supported.
    o) (F) if server's best protocol is SSL 3.0
    p) Cap to C if not supporting TLS 1.2.
-   q) Vulnerability to DROWN: servers get an F. **V**
+   q) **V** Vulnerability to DROWN: servers get an F. **V**
    r) If vulnerable to CVE-2016-2107 (Padding oracle in AES-NI CBC MAC check) it will be given F.
    s) SHA1 certificates are now longer trusted (T).
    t) If vulnerable to the Ticketbleed (CVE-2016-9244), it will be given F.
