@@ -81,27 +81,27 @@ class CipherStrengthScore(Enum):
 
 """
 4) Mandatory rates:
-   a) **V** SSL 2.0 is not allowed (F). **V**
-   b) Insecure renegotiation is not allowed (F).
-   c) Vulnerability to the BEAST attack caps the grade at B.
-   d) Vulnerability to the CRIME attack caps the grade at B.
-   e) Support for TLS 1.2 is now required to get the A grade. Without, the grade is capped a B.
-   f) **V** If vulnerable to the Heartbleed attack, it will be given F. **V**
-   g) **V** If vulnerable to the OpenSSL CVE-2014-0224 vulnerability, it will be given F. **V**
-   h) Keys below 2048 bits (e.g., 1024) are now considered weak, and the grade capped at B.
-   i) Keys under 1024 bits are now considered insecure (F).
-   j) MD5 certificate signatures is not allowed (F).
-   k) **V** Servers that use SHA1 certificates can't get an A+. **V**
-   l) **V** Cap to C if vulnerable to POODLE. **V**
-   m) Don’t award A+ to servers that don’t support TLS_FALLBACK_SCSV.
-   n) Cap to B if SSL 3 is supported.
-   o) (F) if server's best protocol is SSL 3.0
-   p) Cap to C if not supporting TLS 1.2.
-   q) **V** Vulnerability to DROWN: servers get an F. **V**
-   r) If vulnerable to CVE-2016-2107 (Padding oracle in AES-NI CBC MAC check) it will be given F.
-   s) SHA1 certificates are now longer trusted (T).
-   t) If vulnerable to the Ticketbleed (CVE-2016-9244), it will be given F.
-   u) WoSign/StartCom certificates distrusted, will get 'T' grade.
+   - **V** SSL 2.0 is not allowed (F). **V**
+   - **V** If vulnerable to the Heartbleed attack, it will be given F. **V**
+   - **V** If vulnerable to the OpenSSL CVE-2014-0224 vulnerability, it will be given F. **V**
+   - **V** Servers that use SHA1 certificates can't get an A+. **V**
+   - **V** Cap to C if vulnerable to POODLE. **V**
+   - **V** Don’t award A+ to servers that don’t support TLS_FALLBACK_SCSV. **V** 
+   - **V** Vulnerability to DROWN: servers get an F. **V**
+   - Insecure renegotiation is not allowed (F).
+   - Vulnerability to the BEAST attack caps the grade at B.
+   - Vulnerability to the CRIME attack caps the grade at B.
+   - Support for TLS 1.2 is now required to get the A grade. Without, the grade is capped a B.
+   - Keys below 2048 bits (e.g., 1024) are now considered weak, and the grade capped at B.
+   - Keys under 1024 bits are now considered insecure (F).
+   - MD5 certificate signatures is not allowed (F).
+   - Cap to B if SSL 3 is supported.
+   - (F) if server's best protocol is SSL 3.0
+   - Cap to C if not supporting TLS 1.2.
+   - If vulnerable to CVE-2016-2107 (Padding oracle in AES-NI CBC MAC check) it will be given F.
+   - SHA1 certificates are now longer trusted (T).
+   - If vulnerable to the Ticketbleed (CVE-2016-9244), it will be given F.
+   - WoSign/StartCom certificates distrusted, will get 'T' grade.
     
 """
 
