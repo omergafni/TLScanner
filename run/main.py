@@ -26,6 +26,7 @@ def print_results(scan_results, out_file):
     out_file.write("\n")
 
 
+
 def run_command(scanner, server_info, command, output):
     print("[.] Checking {:50}".format(command.get_title()), end="")
     sys.stdout.flush()
