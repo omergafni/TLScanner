@@ -3,6 +3,8 @@ from abc import abstractmethod
 from datetime import datetime
 from cryptography.hazmat.primitives.asymmetric.ec import EllipticCurvePublicKey
 from sslyze.plugins.certificate_info_plugin import CertificateInfoScanCommand
+from sslyze.plugins.heartbleed_plugin import HeartbleedScanCommand
+
 from commands.server_rates import ProtocolScore, KeyExchangeScore, CipherStrengthScore
 from plugins.drown_plugin import DrownScanCommand
 from plugins.poodle_ssl_plugin import PoodleSslScanCommand
@@ -191,8 +193,18 @@ class DrownTestCommand(TestCommand):
 
 
 class HeartbleedTestCommand(TestCommand):
+
+    def __init__(self):
+        super().__init__(HeartbleedScanCommand())
+
     def get_result_as_json(self):
-        pass
+        result = {}
+        if self.scan_result.is_vulnerable_to_heartbleed:
+            result["heartbleed_vulnerability"] = "grade F"
+        else:
+            result["heartbleed_vulnerability"] = "OK"
+
+        return json.dumps(result)
 
 
 class OpenSslCcsInjectionTestCommand(TestCommand):
