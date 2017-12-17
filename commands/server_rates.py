@@ -88,7 +88,7 @@ class CipherStrengthScore(Enum):
    - **V** Cap to C if vulnerable to POODLE. **V**
    - **V** Don’t award A+ to servers that don’t support TLS_FALLBACK_SCSV. **V** 
    - **V** Vulnerability to DROWN: servers get an F. **V**
-   - Insecure renegotiation is not allowed (F).
+   - **V** Insecure renegotiation is not allowed (F). **V**
    - Vulnerability to the BEAST attack caps the grade at B.
    - Vulnerability to the CRIME attack caps the grade at B.
    - Support for TLS 1.2 is now required to get the A grade. Without, the grade is capped a B.

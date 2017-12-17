@@ -6,6 +6,7 @@ from sslyze.plugins.certificate_info_plugin import CertificateInfoScanCommand
 from sslyze.plugins.fallback_scsv_plugin import FallbackScsvScanCommand
 from sslyze.plugins.heartbleed_plugin import HeartbleedScanCommand
 from sslyze.plugins.openssl_ccs_injection_plugin import OpenSslCcsInjectionScanCommand
+from sslyze.plugins.session_renegotiation_plugin import SessionRenegotiationScanCommand
 
 from commands.server_rates import ProtocolScore, KeyExchangeScore, CipherStrengthScore
 from plugins.drown_plugin import DrownScanCommand
@@ -233,10 +234,6 @@ class OpenSslCcsInjectionTestCommand(TestCommand):
         return json.dumps(result)
 
 
-class ScanResultUnavailable(Exception):
-    pass
-
-
 class FallbackScsvTestCommand(TestCommand):
 
     def __init__(self):
@@ -253,6 +250,30 @@ class FallbackScsvTestCommand(TestCommand):
             result["supports_fallback_scsv"] = "OK"
 
         return json.dumps(result)
+
+
+class SessionRenegotiationTestCommand(TestCommand):
+
+    def __init__(self):
+        super().__init__(SessionRenegotiationScanCommand())
+
+    def get_result_as_json(self):
+        result = {}
+        if self.scan_result is None:
+            raise ScanResultUnavailable()
+
+        if not self.scan_result.supports_secure_renegotiation:
+            result["secure_renegotiation_unsupported"] = "grade F"
+        else:
+            result["secure_renegotiation_supported"] = "OK"
+
+        # TODO: 'accepts_client_renegotiation' can be also checked here
+
+        return json.dumps(result)
+
+
+class ScanResultUnavailable(Exception):
+    pass
 
 
 class CipherStrengthScoreUnavailable(Exception):
