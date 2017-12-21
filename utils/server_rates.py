@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class Grades(Enum):
+class GradesEnum(Enum):
     """
     Letter grade translation:
     A - if score >= 80
@@ -26,7 +26,7 @@ class Grades(Enum):
     T = 8        # site certificate is not trusted
 
 
-class ProtocolScore(Enum):
+class ProtocolScoreEnum(Enum):
     """
     1) Protocol support:
         SSL 2.0:	0       **V**
@@ -44,7 +44,7 @@ class ProtocolScore(Enum):
     TLSv12 = 100
 
 
-class KeyExchangeScore(Enum):
+class KeyExchangeScoreEnum(Enum):
     """
     2) Key exchange:
         Weak key (Debian OpenSSL flaw): 	                         0
@@ -63,7 +63,7 @@ class KeyExchangeScore(Enum):
     EqualOrGreaterThan4096 = 100
 
 
-class CipherStrengthScore(Enum):
+class CipherStrengthScoreEnum(Enum):
     """
     3) Cipher strength:
         0 bits (no encryption)	        0

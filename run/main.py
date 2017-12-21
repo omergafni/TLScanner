@@ -1,3 +1,6 @@
+import sys
+sys.path.append("/root/PycharmProjects/SSL-TLS-Tool")
+
 from sslyze.server_connectivity import ServerConnectivityInfo
 from sslyze.server_connectivity import ServerConnectivityError
 from sslyze.plugins.openssl_cipher_suites_plugin import Tlsv10ScanCommand
@@ -15,8 +18,7 @@ from sslyze.plugins.session_resumption_plugin import SessionResumptionSupportSca
 from sslyze.plugins.session_resumption_plugin import SessionResumptionRateScanCommand
 from sslyze.synchronous_scanner import SynchronousScanner
 import datetime
-import sys
-from plugins.poodle_ssl_plugin import PoodleSslScanCommand
+from plugins.poodlessl_plugin import PoodleSslScanCommand
 from plugins.drown_plugin import DrownScanCommand
 
 
@@ -24,7 +26,6 @@ def print_results(scan_results, out_file):
     for res in scan_results.as_text():
         out_file.write(res+"\n")
     out_file.write("\n")
-
 
 
 def run_command(scanner, server_info, command, output):
@@ -58,7 +59,7 @@ def main():
     """
     Creating an output file
     """
-    output = open("output/"+hostname, "w")
+    output = open("/root/PycharmProjects/SSL-TLS-Tool/output/"+hostname, "w")
     output.write("##############################################\n")
     output.write("Output result for host: {}\n".format(hostname))
     output.write("Start {}\n".format(datetime.datetime.now()))
@@ -97,10 +98,11 @@ def main():
     Closing
     """
     output.close()
-    print("\n\n[*] Check output file for more details")
+    print("\n[*] Check output file for more details")
     print("[*] Test completed!")
 
 if __name__ == '__main__':
+    sys.path.append("/root/PycharmProjects/SSL-TLS-Tool/plugins")
     main()
 
 
