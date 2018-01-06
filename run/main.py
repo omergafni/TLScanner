@@ -98,9 +98,9 @@ def main():
     results_parser = ResultsParser()
     results_parser.sort_and_parse_json_results(json_results)
     results_parser.get_final_results()
-    print("key score: {}".format(results_parser.compute_key_exchange_score()))
-    print("cipher score: {}".format(results_parser.compute_cipher_strength_score()))
-    print("protocol score: {}".format(results_parser.compute_protocol_score()))
+    print("key score is {}".format(results_parser.compute_key_exchange_score()))
+    print("cipher score is {}".format(results_parser.compute_cipher_strength_score()))
+    print("protocol score is {}".format(results_parser.compute_protocol_score()))
 
     """
     Closing
