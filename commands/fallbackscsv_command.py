@@ -1,9 +1,9 @@
 import json
 from sslyze.plugins.fallback_scsv_plugin import FallbackScsvScanCommand
-from commands.testcommand import ScanResultUnavailable, TestCommand
+from commands.command import ScanResultUnavailable, Command
 
 
-class FallbackScsvTestCommand(TestCommand):
+class FallbackScsvCommand(Command):
 
     def __init__(self):
         super().__init__(FallbackScsvScanCommand())

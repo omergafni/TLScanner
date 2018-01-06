@@ -1,7 +1,7 @@
 from abc import abstractmethod
 
 
-class TestCommand(object):
+class Command(object):
     """
     Abstract class to represent all available commands.
     This class is a wrapper for the original SSLyze scan commands.
@@ -25,6 +25,3 @@ class TestCommand(object):
 class ScanResultUnavailable(Exception):
     pass
 
-
-class CipherStrengthScoreUnavailable(Exception):
-    pass

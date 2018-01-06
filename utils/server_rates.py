@@ -15,14 +15,20 @@ class GradesEnum(Enum):
     1) Protocol support (30%)
     2) Key exchange (30%)
     3) Cipher strength (40%)
+
+    ** Implementation is is ResultsParser class **
     """
+
+    PROTOCOL_FACTOR = 0.3
+    KEY_FACTOR = 0.3
+    CIPHER_FACTOR = 0.4
     A_PLUS = 1   # good configuration, no warnings.
     A_MINUS = 2  # good configuration that have one or more warnings.
-    B = 3
-    C = 4
-    D = 5
-    E = 6
-    F = 7
+    B = 3        # TODO: description
+    C = 4        # TODO: description
+    D = 5        # TODO: description
+    E = 6        # TODO: description
+    F = 7        # TODO: description
     T = 8        # site certificate is not trusted
 
 

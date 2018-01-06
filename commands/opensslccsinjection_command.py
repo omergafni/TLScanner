@@ -1,9 +1,9 @@
 import json
 from sslyze.plugins.openssl_ccs_injection_plugin import OpenSslCcsInjectionScanCommand
-from commands.testcommand import ScanResultUnavailable, TestCommand
+from commands.command import ScanResultUnavailable, Command
 
 
-class OpenSslCcsInjectionTestCommand(TestCommand):
+class OpenSslCcsInjectionCommand(Command):
 
     def __init__(self):
         super().__init__(OpenSslCcsInjectionScanCommand())

@@ -1,9 +1,9 @@
 import json
-from commands.testcommand import TestCommand, ScanResultUnavailable
+from commands.command import Command, ScanResultUnavailable
 from plugins.poodlessl_plugin import PoodleSslScanCommand
 
 
-class PoodleSslTestCommand(TestCommand):
+class PoodleSslCommand(Command):
 
     def __init__(self):
         super().__init__(PoodleSslScanCommand())

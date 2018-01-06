@@ -1,9 +1,9 @@
 import json
-from commands.testcommand import TestCommand, ScanResultUnavailable
+from commands.command import Command, ScanResultUnavailable
 from plugins.drown_plugin import DrownScanCommand
 
 
-class DrownTestCommand(TestCommand):
+class DrownCommand(Command):
 
     def __init__(self):
         super().__init__(DrownScanCommand())

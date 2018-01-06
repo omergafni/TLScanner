@@ -1,25 +1,25 @@
 import sys
 sys.path.append("/root/PycharmProjects/SSL-TLS-Tool")
 
-from sslyze.server_connectivity import ServerConnectivityInfo
-from sslyze.server_connectivity import ServerConnectivityError
+import datetime
+from sslyze.plugins.openssl_cipher_suites_plugin import Sslv20ScanCommand
+from sslyze.plugins.openssl_cipher_suites_plugin import Sslv30ScanCommand
 from sslyze.plugins.openssl_cipher_suites_plugin import Tlsv10ScanCommand
 from sslyze.plugins.openssl_cipher_suites_plugin import Tlsv11ScanCommand
 from sslyze.plugins.openssl_cipher_suites_plugin import Tlsv12ScanCommand
-from sslyze.plugins.openssl_cipher_suites_plugin import Sslv20ScanCommand
-from sslyze.plugins.openssl_cipher_suites_plugin import Sslv30ScanCommand
-from sslyze.plugins.certificate_info_plugin import CertificateInfoScanCommand
-from sslyze.plugins.heartbleed_plugin import HeartbleedScanCommand
-from sslyze.plugins.compression_plugin import CompressionScanCommand
-from sslyze.plugins.fallback_scsv_plugin import FallbackScsvScanCommand
-from sslyze.plugins.session_renegotiation_plugin import SessionRenegotiationScanCommand
-from sslyze.plugins.openssl_ccs_injection_plugin import OpenSslCcsInjectionScanCommand
-from sslyze.plugins.session_resumption_plugin import SessionResumptionSupportScanCommand
-from sslyze.plugins.session_resumption_plugin import SessionResumptionRateScanCommand
+from sslyze.server_connectivity import ServerConnectivityError
+from sslyze.server_connectivity import ServerConnectivityInfo
 from sslyze.synchronous_scanner import SynchronousScanner
-import datetime
-from plugins.poodlessl_plugin import PoodleSslScanCommand
-from plugins.drown_plugin import DrownScanCommand
+
+from commands.certificateinfo_command import CertificateInfoCommand
+from commands.ciphersuites_command import CipherSuitesCommand
+from commands.drown_command import DrownCommand
+from commands.fallbackscsv_command import FallbackScsvCommand
+from commands.heartbleed_command import HeartbleedCommand
+from commands.opensslccsinjection_command import OpenSslCcsInjectionCommand
+from commands.poodlessl_command import PoodleSslCommand
+from commands.sessionrenegotiation_command import SessionRenegotiationCommand
+from utils.results_parser import ResultsParser
 
 
 def print_results(scan_results, out_file):
@@ -29,11 +29,21 @@ def print_results(scan_results, out_file):
 
 
 def run_command(scanner, server_info, command, output):
-    print("[.] Checking {:50}".format(command.get_title()), end="")
+    print("[.] Checking {:50}".format(command.scan_command.get_title()), end="")
     sys.stdout.flush()
-    result = scanner.run_scan_command(server_info, command)
-    print_results(result, output)
+    command.scan_result = scanner.run_scan_command(server_info, command.scan_command)
+    print_results(command.scan_result, output)
     print("DONE")
+    return command.get_result_as_json()
+
+
+def create_output_file(hostname):
+    output = open("/root/PycharmProjects/SSL-TLS-Tool/output/" + hostname, "w")
+    output.write("##############################################\n")
+    output.write("Output result for host: {}\n".format(hostname))
+    output.write("Start {}\n".format(datetime.datetime.now()))
+    output.write("##############################################\n\n")
+    return output
 
 
 def main():
@@ -50,49 +60,47 @@ def main():
     try:
         server_info = ServerConnectivityInfo(hostname)
         server_info.test_connectivity_to_server()
-        print("[*] Connection established. \n[.] Starting tests on {} \n".format(hostname))
+        print("[*] Connection established. \n[*] Starting tests on {} \n".format(hostname))
     except ServerConnectivityError as e:
         raise RuntimeError("Error when connecting to {}: {}".format(hostname, e.error_msg))
 
     scanner = SynchronousScanner()
+    output = create_output_file(hostname)
+
+    """ 
+    Commands lists:
+    """
+    cipher_suites_commands = [CipherSuitesCommand(Tlsv10ScanCommand()),
+                              CipherSuitesCommand(Tlsv11ScanCommand()),
+                              CipherSuitesCommand(Tlsv12ScanCommand()),
+                              CipherSuitesCommand(Sslv20ScanCommand()),
+                              CipherSuitesCommand(Sslv30ScanCommand())]
+
+    # TODO: CompressionCommand(), SessionResumptionSupportCommand(), SessionResumptionRateScanCommand()
+    vulnerabilities_commands = [DrownCommand(), PoodleSslCommand(), HeartbleedCommand(),
+                                OpenSslCcsInjectionCommand(),
+                                FallbackScsvCommand(), SessionRenegotiationCommand()]
 
     """
-    Creating an output file
+    Run commands:
     """
-    output = open("/root/PycharmProjects/SSL-TLS-Tool/output/"+hostname, "w")
-    output.write("##############################################\n")
-    output.write("Output result for host: {}\n".format(hostname))
-    output.write("Start {}\n".format(datetime.datetime.now()))
-    output.write("##############################################\n\n")
+    json_results = [run_command(scanner, server_info, CertificateInfoCommand(), output)]
+
+    for cipher_suite in cipher_suites_commands:
+        json_results.append(run_command(scanner, server_info, cipher_suite, output))
+
+    for vulnerability in vulnerabilities_commands:
+        json_results.append(run_command(scanner, server_info, vulnerability, output))
 
     """
-    Certificate:
+    Parsing results:
     """
-    scan_result = scanner.run_scan_command(server_info, CertificateInfoScanCommand())
-    for e in scan_result.as_text():
-        output.write(e+"\n")
-
-    """
-    Protocols and Ciphers Suits:
-    """
-    run_command(scanner, server_info, Tlsv10ScanCommand(), output)
-    run_command(scanner, server_info, Tlsv11ScanCommand(), output)
-    run_command(scanner, server_info, Tlsv12ScanCommand(), output)
-    run_command(scanner, server_info, Sslv20ScanCommand(), output)
-    run_command(scanner, server_info, Sslv30ScanCommand(), output)
-
-    """
-    Testing vulnerabilities:
-    """
-    run_command(scanner, server_info, DrownScanCommand(), output)
-    run_command(scanner, server_info, PoodleSslScanCommand(), output)
-    run_command(scanner, server_info, HeartbleedScanCommand(), output)
-    run_command(scanner, server_info, OpenSslCcsInjectionScanCommand(), output)
-    run_command(scanner, server_info, CompressionScanCommand(), output)
-    run_command(scanner, server_info, FallbackScsvScanCommand(), output)
-    run_command(scanner, server_info, SessionRenegotiationScanCommand(), output)
-    run_command(scanner, server_info, SessionResumptionSupportScanCommand(), output)
-    run_command(scanner, server_info, SessionResumptionRateScanCommand(), output)
+    results_parser = ResultsParser()
+    results_parser.sort_and_parse_json_results(json_results)
+    results_parser.get_final_results()
+    print("key score: {}".format(results_parser.compute_key_exchange_score()))
+    print("cipher score: {}".format(results_parser.compute_cipher_strength_score()))
+    print("protocol score: {}".format(results_parser.compute_protocol_score()))
 
     """
     Closing
@@ -102,7 +110,7 @@ def main():
     print("[*] Test completed!")
 
 if __name__ == '__main__':
-    sys.path.append("/root/PycharmProjects/SSL-TLS-Tool/plugins")
+    # sys.path.append("/root/PycharmProjects/SSL-TLS-Tool/plugins")
     main()
 
 

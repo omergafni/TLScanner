@@ -1,9 +1,9 @@
 import json
 from sslyze.plugins.heartbleed_plugin import HeartbleedScanCommand
-from commands.testcommand import TestCommand, ScanResultUnavailable
+from commands.command import Command, ScanResultUnavailable
 
 
-class HeartbleedTestCommand(TestCommand):
+class HeartbleedCommand(Command):
 
     def __init__(self):
         super().__init__(HeartbleedScanCommand())

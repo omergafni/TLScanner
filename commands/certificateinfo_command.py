@@ -2,11 +2,11 @@ import datetime
 import json
 from cryptography.hazmat.primitives.asymmetric.ec import EllipticCurvePublicKey
 from sslyze.plugins.certificate_info_plugin import CertificateInfoScanCommand
-from commands.testcommand import TestCommand, ScanResultUnavailable
+from commands.command import Command, ScanResultUnavailable
 from utils.server_rates import KeyExchangeScoreEnum
 
 
-class CertificateInfoTestCommand(TestCommand):
+class CertificateInfoCommand(Command):
 
     def __init__(self):
         super().__init__(CertificateInfoScanCommand())
@@ -18,7 +18,7 @@ class CertificateInfoTestCommand(TestCommand):
 
     def get_result_as_json(self):
 
-        today = datetime.now()
+        today = datetime.datetime.now()
         result = {}
 
         if self.scan_result is None:
@@ -62,7 +62,7 @@ class CertificateInfoTestCommand(TestCommand):
             result["key_exchange_score"] = self.key_exchange_scores["<2048"]
         elif key_size < 4096:
             result["key_exchange_score"] = self.key_exchange_scores["<4096"]
-        else: # key_size >= 4096:
+        else:  # key_size >= 4096:
             result["key_exchange_score"] = self.key_exchange_scores[">=4096"]
 
         return json.dumps(result)
