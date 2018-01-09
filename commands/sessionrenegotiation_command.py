@@ -1,6 +1,7 @@
 import json
 from sslyze.plugins.session_renegotiation_plugin import SessionRenegotiationScanCommand
 from commands.command import Command, ScanResultUnavailable
+from utils.server_rates import MandatoryZeroFinalGrade
 
 
 class SessionRenegotiationCommand(Command):
@@ -14,9 +15,9 @@ class SessionRenegotiationCommand(Command):
             raise ScanResultUnavailable()
 
         if not self.scan_result.supports_secure_renegotiation:
-            result["secure_renegotiation_vulnerability"] = "grade F"
+            result[MandatoryZeroFinalGrade.INSECURE_RENEGOTIATION.value] = "final grade 0"
         else:
-            result["secure_renegotiation_vulnerability"] = "OK"
+            result["secure renegotiation vulnerability"] = "OK"
 
         # TODO: 'accepts_client_renegotiation' can be also checked here
 

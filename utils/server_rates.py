@@ -9,7 +9,7 @@ class GradesEnum(Enum):
     C - if score >= 50
     D - if score >= 35
     E - if score >= 20
-    F - if score < 20
+    F - if score <  20
 
     Total grade will be a combination of:
     1) Protocol support
@@ -44,7 +44,7 @@ class ProtocolScoreEnum(Enum):
 
         Total score: best protocol score + worst protocol score, divided by 2.
     """
-    SSLv20 = 0
+    # SSLv20 = 0 - resulting mandatory F final grade
     SSLv30 = 80
     TLSv10 = 90
     TLSv11 = 95
@@ -53,7 +53,7 @@ class ProtocolScoreEnum(Enum):
 
 class KeyExchangeScoreEnum(Enum):
     """
-    2) Key exchange:
+    Key exchange:
         Weak key (Debian OpenSSL flaw): 	                         0
         Anonymous key exchange (no authentication)	                 0
         Key or DH parameter strength < 512 bits	                     20     **V**
@@ -70,15 +70,15 @@ class KeyExchangeScoreEnum(Enum):
     EqualOrGreaterThan4096 = 100
 
 
-class CipherStrengthScoreEnum(Enum):
+class CipherScoresEnum(Enum):
     """
-    3) Cipher strength:
-        0 bits (no encryption)	        0
-        < 128 bits (e.g., 40, 56)	    20
-        < 256 bits (e.g., 128, 168)	    80
+    Cipher strength:
+        0 bits (no encryption)            0
+        < 128 bits (e.g., 40, 56)	     20
+        < 256 bits (e.g., 128, 168)      80
         >= 256 bits (e.g., 256)	        100
 
-        Total score: strongest cipher score + weakest cipher score, divided by 2.
+    Total score: strongest cipher score + weakest cipher score, divided by 2.
     """
     NoEncryption = 0
     LessThan128 = 20
@@ -86,42 +86,42 @@ class CipherStrengthScoreEnum(Enum):
     EqualOrGraterThan256 = 100
 
 
-"""
-4) Mandatory rates:
-   - **V** SSL 2.0 is not allowed (F). **V**
-   - **V** If vulnerable to the Heartbleed attack, it will be given F. **V**
-   - **V** If vulnerable to the OpenSSL CVE-2014-0224 vulnerability, it will be given F. **V**
-   - **V** Servers that use SHA1 certificates can't get an A+. **V**
-   - **V** Cap to C if vulnerable to POODLE. **V**
-   - **V** Don’t award A+ to servers that don’t support TLS_FALLBACK_SCSV. **V** 
-   - **V** Vulnerability to DROWN: servers get an F. **V**
-   - **V** Insecure renegotiation is not allowed (F). **V**
-   - Vulnerability to the BEAST attack caps the grade at B.
-   - Vulnerability to the CRIME attack caps the grade at B.
-   - Support for TLS 1.2 is now required to get the A grade. Without, the grade is capped a B.
-   - Keys below 2048 bits (e.g., 1024) are now considered weak, and the grade capped at B.
-   - Keys under 1024 bits are now considered insecure (F).
-   - MD5 certificate signatures is not allowed (F).
-   - Cap to B if SSL 3 is supported.
-   - (F) if server's best protocol is SSL 3.0
-   - Cap to C if not supporting TLS 1.2.
-   - If vulnerable to CVE-2016-2107 (Padding oracle in AES-NI CBC MAC check) it will be given F.
-   - SHA1 certificates are now longer trusted (T).
-   - If vulnerable to the Ticketbleed (CVE-2016-9244), it will be given F.
-   - WoSign/StartCom certificates distrusted, will get 'T' grade.
-    
-"""
+class MandatoryZeroFinalGrade(Enum):
+    """
+    For these reasons, any of the following immediately result in a zero score:
+    """
+    DOMAIN_MISS_MATCH = "domain name mismatch"                            # **V**
+    CERTIFICATE_NOT_YET_VALID = "certificate not yet valid"               # **V**
+    CERTIFICATE_EXPIRED = "certificate expired"                           # **V**
+    CERTIFICATE_NOT_TRUSTED = "use of a certificate that is not trusted"  # **V** (unknown CA or other validation error)
+    SSL20_SUPPORTED = "SSL2.0 is not allowed"                             # **V**
+    OPENSSL_CCS_INJECTION_VULNERABILITY = "vulnerable to the openssl cve-2014-0224"     # **V**
+    DROWN_VULNERABILITY = "vulnerable to DROWN"                           # **V**
+    INSECURE_RENEGOTIATION = "server allowed insecure renegotiation"      # **V**
+    # Use of a self-signed certificate
+    # Use of a revoked certificate
+    # Insecure certificate signature (MD2 or MD5)
+    # Insecure key
+    # (F) if server's best protocol is SSL 3.0
+    # Keys under 1024 bits are now considered insecure (F).
+    # MD5 certificate signatures is not allowed (F).
+    # If vulnerable to the Ticketbleed (CVE-2016-9244), it will be given F.
+    # If vulnerable to CVE-2016-2107 (Padding oracle in AES-NI CBC MAC check) it will be given F.
+    # - SHA1 certificates are now longer trusted (T).
+    # - WoSign/StartCom certificates distrusted, will get 'T' grade.
 
-"""
-For these reasons, any of the following certificate issues immediately result in a zero score:
 
-Domain name mismatch                                                                    **V**
-Certificate not yet valid                                                               **V**
-Certificate expired                                                                     **V**
-Use of a certificate that is not trusted (unknown CA or some other validation error)    **V**
-Use of a self-signed certificate
-Use of a revoked certificate
-Insecure certificate signature (MD2 or MD5)
-Insecure key
+class FinalGradesCaps(Enum):
+    """
+       - **V** Servers that use SHA1 certificates can't get an A+. **V**
+       - **V** Cap to C if vulnerable to POODLE. **V**
+       - **V** Don’t award A+ to servers that don’t support TLS_FALLBACK_SCSV. **V**
+       - Vulnerability to the BEAST attack caps the grade at B.
+       - Vulnerability to the CRIME attack caps the grade at B.
+       - Support for TLS 1.2 is now required to get the A grade. Without, the grade is capped a B.
+       - Keys below 2048 bits (e.g., 1024) are now considered weak, and the grade capped at B.
+       - Cap to B if SSL 3 is supported.
+       - Cap to C if not supporting TLS 1.2.
 
-"""
+
+    """

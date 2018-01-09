@@ -3,7 +3,7 @@ import json
 from cryptography.hazmat.primitives.asymmetric.ec import EllipticCurvePublicKey
 from sslyze.plugins.certificate_info_plugin import CertificateInfoScanCommand
 from commands.command import Command, ScanResultUnavailable
-from utils.server_rates import KeyExchangeScoreEnum
+from utils.server_rates import KeyExchangeScoreEnum, MandatoryZeroFinalGrade
 
 
 class CertificateInfoCommand(Command):
@@ -27,21 +27,24 @@ class CertificateInfoCommand(Command):
         # Using weak SHA1
         if self.scan_result.has_sha1_in_certificate_chain:
             result["certificate_info_sha1"] = "cap to A-"
+
         # Certificate hostname mismatch
         if not self.scan_result.certificate_matches_hostname:
-            result["certificate_info_hostname_mismatch"] = "final grade: 0"
+            result[MandatoryZeroFinalGrade.DOMAIN_MISS_MATCH.value] = "final grade 0"
             return json.dumps(result)
+
         # Date validation
         for certificate in self.scan_result.certificate_chain:
             if certificate.not_valid_after < today:
-                result["certificate_info_invalid_date"] = "final grade: 0"
+                result[MandatoryZeroFinalGrade.CERTIFICATE_EXPIRED] = "final grade 0"
                 return json.dumps(result)
             if certificate.not_valid_before > today:
-                result["certificate_info_invalid_date"] = "final grade: 0"
+                result[MandatoryZeroFinalGrade.CERTIFICATE_NOT_YET_VALID] = "final grade 0"
                 return json.dumps(result)
+
         # Certificate is trusted?
         if not self.scan_result.verified_certificate_chain:
-            result["certificate_info_not_trusted"] = "final grade: 0"
+            result[MandatoryZeroFinalGrade.CERTIFICATE_NOT_TRUSTED] = "final grade 0"
             return json.dumps(result)
 
         # Checking public key properties

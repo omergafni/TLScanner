@@ -1,6 +1,7 @@
 import json
 from sslyze.plugins.openssl_ccs_injection_plugin import OpenSslCcsInjectionScanCommand
 from commands.command import ScanResultUnavailable, Command
+from utils.server_rates import MandatoryZeroFinalGrade
 
 
 class OpenSslCcsInjectionCommand(Command):
@@ -14,8 +15,8 @@ class OpenSslCcsInjectionCommand(Command):
             raise ScanResultUnavailable()
 
         if self.scan_result.is_vulnerable_to_ccs_injection:
-            result["openssl_ccs_injection"] = "grade F"
+            result[MandatoryZeroFinalGrade.OPENSSL_CCS_INJECTION_VULNERABILITY.value] = "final grade 0"
         else:
-            result["openssl_ccs_injection"] = "OK"
+            result["openssl ccs injection"] = "OK"
 
         return json.dumps(result)

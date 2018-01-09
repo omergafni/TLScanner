@@ -1,6 +1,7 @@
 import json
 from commands.command import Command, ScanResultUnavailable
 from plugins.drown_plugin import DrownScanCommand
+from utils.server_rates import MandatoryZeroFinalGrade
 
 
 class DrownCommand(Command):
@@ -14,8 +15,8 @@ class DrownCommand(Command):
             raise ScanResultUnavailable()
 
         if self.scan_result.is_vulnerable_to_drown_attack:
-            result["drown_vulnerability"] = "grade F"
+            result[MandatoryZeroFinalGrade.DROWN_VULNERABILITY.value] = "final grade 0"
         else:
-            result["drown_vulnerability"] = "OK"
+            result["drown vulnerability"] = "OK"
 
         return json.dumps(result)

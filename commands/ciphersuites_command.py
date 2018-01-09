@@ -1,19 +1,19 @@
 import json
 
 from commands.command import Command, ScanResultUnavailable
-from utils.server_rates import ProtocolScoreEnum, CipherStrengthScoreEnum
+from utils.server_rates import ProtocolScoreEnum, CipherScoresEnum, MandatoryZeroFinalGrade
 
 
 class CipherSuitesCommand(Command):
 
-    protocol_scores = {"sslv2": ProtocolScoreEnum.SSLv20.value, "sslv3": ProtocolScoreEnum.SSLv30.value,
+    protocol_scores = {"sslv3": ProtocolScoreEnum.SSLv30.value,
                        "tlsv1": ProtocolScoreEnum.TLSv10.value, "tlsv1_1": ProtocolScoreEnum.TLSv11.value,
                        "tlsv1_2": ProtocolScoreEnum.TLSv12.value}
 
-    cipher_strength_scores = {"0": CipherStrengthScoreEnum.NoEncryption.value,
-                              "<128": CipherStrengthScoreEnum.LessThan128.value,
-                              "<256": CipherStrengthScoreEnum.LessThan256.value,
-                              ">=256": CipherStrengthScoreEnum.EqualOrGraterThan256.value}
+    cipher_strength_scores = {"0": CipherScoresEnum.NoEncryption.value,
+                              "<128": CipherScoresEnum.LessThan128.value,
+                              "<256": CipherScoresEnum.LessThan256.value,
+                              ">=256": CipherScoresEnum.EqualOrGraterThan256.value}
 
     def __init__(self, cipher_scan_command):
         super().__init__(cipher_scan_command)
@@ -53,14 +53,17 @@ class CipherSuitesCommand(Command):
 
             # Getting cipher suite score
             cipher_name = self.scan_command.get_cli_argument()
-            result[cipher_name + '_protocol_score'] = self.protocol_scores[cipher_name]
+            if cipher_name == "sslv2":
+                result[MandatoryZeroFinalGrade.SSL20_SUPPORTED.value] = "final grade 0"
+            else:
+                result[cipher_name + '_protocol_score'] = self.protocol_scores[cipher_name]
 
-            # Getting cipher strength score
-            for cipher in self.scan_result.accepted_cipher_list:
-                supported_cipher_key_sizes.append(cipher.key_size)
-            cipher_strength_score = self.get_cipher_strength_score(min(supported_cipher_key_sizes),
-                                                                   max(supported_cipher_key_sizes))
-            result[cipher_name + "_cipher_strength_score"] = cipher_strength_score
+                # Getting cipher strength score
+                for cipher in self.scan_result.accepted_cipher_list:
+                    supported_cipher_key_sizes.append(cipher.key_size)
+                cipher_strength_score = self.get_cipher_strength_score(min(supported_cipher_key_sizes),
+                                                                       max(supported_cipher_key_sizes))
+                result[cipher_name + "_cipher_strength_score"] = cipher_strength_score
         else:
             pass  # No score to be added
 
