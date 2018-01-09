@@ -38,7 +38,7 @@ def run_command(scanner, server_info, command, output):
 
 
 def create_output_file(hostname):
-    output = open("/root/PycharmProjects/SSL-TLS-Tool/output/" + hostname, "w")
+    output = open("output/"+hostname, "w")
     output.write("##############################################\n")
     output.write("Output result for host: {}\n".format(hostname))
     output.write("Start {}\n".format(datetime.datetime.now()))
@@ -97,17 +97,15 @@ def main():
     """
     results_parser = ResultsParser()
     results_parser.sort_and_parse_json_results(json_results)
-    results_parser.get_final_results()
-    print("key score is {}".format(results_parser.compute_key_exchange_score()))
-    print("cipher score is {}".format(results_parser.compute_cipher_strength_score()))
-    print("protocol score is {}".format(results_parser.compute_protocol_score()))
+    print("\n[*] Server result: {}".format(results_parser.get_final_results()))
 
     """
     Closing
     """
     output.close()
-    print("\n[*] Check output file for more details")
-    print("[*] Test completed!")
+    print("[*] Check output file for more details")
+    print("\n[*] Test completed! exiting now.")
+
 
 if __name__ == '__main__':
     # sys.path.append("/root/PycharmProjects/SSL-TLS-Tool/plugins")

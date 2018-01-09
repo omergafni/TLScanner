@@ -12,24 +12,25 @@ class GradesEnum(Enum):
     F - if score < 20
 
     Total grade will be a combination of:
-    1) Protocol support (30%)
-    2) Key exchange (30%)
-    3) Cipher strength (40%)
+    1) Protocol support
+    2) Key exchange
+    3) Cipher strength
 
-    ** Implementation is is ResultsParser class **
+    ** Implementation is in ResultsParser class **
     """
 
-    PROTOCOL_FACTOR = 0.3
+    PROTOCOL_FACTOR = 0.4
     KEY_FACTOR = 0.3
-    CIPHER_FACTOR = 0.4
-    A_PLUS = 1   # good configuration, no warnings.
-    A_MINUS = 2  # good configuration that have one or more warnings.
-    B = 3        # TODO: description
-    C = 4        # TODO: description
-    D = 5        # TODO: description
-    E = 6        # TODO: description
-    F = 7        # TODO: description
-    T = 8        # site certificate is not trusted
+    CIPHER_FACTOR = 0.3
+
+    A_PLUS = "A+ >> good configuration, no warnings."
+    A_MINUS = "A- >> good configuration that have one or more warnings."
+    B = "B >> "  # +parser's message
+    C = "C >> "  # +parser's message
+    E = "E >> "  # +parser's message
+    D = "D >> "  # +parser's message
+    F = "F >> "  # +parser's message
+    T = "T >> site certificate is not trusted."
 
 
 class ProtocolScoreEnum(Enum):
@@ -117,8 +118,8 @@ For these reasons, any of the following certificate issues immediately result in
 Domain name mismatch                                                                    **V**
 Certificate not yet valid                                                               **V**
 Certificate expired                                                                     **V**
-Use of a self-signed certificate
 Use of a certificate that is not trusted (unknown CA or some other validation error)    **V**
+Use of a self-signed certificate
 Use of a revoked certificate
 Insecure certificate signature (MD2 or MD5)
 Insecure key
