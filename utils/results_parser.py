@@ -41,11 +41,10 @@ class ResultsParser(object):
                 self.mandatory_zero_final_results[result] = results[result]
             elif 'key_exchange_score' in result:
                 self.certificate_results[result] = results[result]
-            elif 'cipher_strength_score' in result:
+            elif 'cipher_strength_score' in result or 'protocol_score' in result:
                 self.cipher_suites_results[result] = results[result]
             else:  # All other vulnerabilities
                 self.vulnerabilities_results[result] = results[result]
-        pass
 
     def compute_protocol_score(self):
         protocols_scores = []
@@ -74,10 +73,10 @@ class ResultsParser(object):
             description = ""
             for key in self.mandatory_zero_final_results:
                 description += key + ". "
-            return self.final_grades_repository["<20"] + "{} [0]".format(description)
+            return self.final_grades_repository["<20"] + "{}[0]".format(description)
 
         # Any grade's cap?
-        elif True:
+        elif False:
             pass
 
         # So, compute the server's final score!

@@ -103,7 +103,7 @@ def main():
     Closing
     """
     output.close()
-    print("[*] Check output file for more details")
+    print("[*] Check output file for more details.")
     print("\n[*] Test completed! exiting now.")
 
 
