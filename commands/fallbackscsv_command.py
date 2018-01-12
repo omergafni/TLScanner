@@ -14,8 +14,8 @@ class FallbackScsvCommand(Command):
             raise ScanResultUnavailable()
 
         if not self.scan_result.supports_fallback_scsv:
-            result["supports_fallback_scsv"] = "cap to A-"
+            result["supports_fallback_scsv_scan_result"] = "cap to A-"
         else:
-            result["supports_fallback_scsv"] = "OK"
+            result["supports_fallback_scsv_scan_result"] = "ok"
 
         return json.dumps(result)

@@ -1,5 +1,7 @@
 import sys
 
+from sslyze.plugins.robot_plugin import RobotScanCommand
+
 from commands.certificateinfo_command import CertificateInfoCommand
 from commands.ciphersuites_command import CipherSuitesCommand
 from commands.drown_command import DrownCommand
@@ -26,6 +28,8 @@ except ServerConnectivityError as e:
     raise RuntimeError("Error when connecting to {}: {}".format(hostname, e.error_msg))
 
 scanner = SynchronousScanner()
+
+result = scanner.run_scan_command(server_info, RobotScanCommand())
 
 cmnd = CertificateInfoCommand()
 cmnd.scan_result = scanner.run_scan_command(server_info, cmnd.scan_command)

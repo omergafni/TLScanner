@@ -1,6 +1,6 @@
 ##############################################
 Output result for host: www.google.co.il
-Start 2018-01-04 11:07:05.711940
+Start 2018-01-12 10:40:43.352271
 ##############################################
 
  * Certificate Information:
@@ -19,19 +19,23 @@ Start 2018-01-04 11:07:05.711940
 
      Trust
        Hostname Validation:               OK - Certificate matches www.google.co.il
-       AOSP CA Store (7.0.0 r1):          OK - Certificate is trusted
-       Apple CA Store (OS X 10.11.6):     OK - Certificate is trusted
-       Java 7 CA Store (Update 79):       OK - Certificate is trusted
-       Microsoft CA Store (09/2016):      OK - Certificate is trusted
-       Mozilla CA Store (09/2016):        OK - Certificate is trusted
+       AOSP CA Store (8.0.0 r36):         OK - Certificate is trusted
+       Apple CA Store (macOS 10.13.1):    OK - Certificate is trusted
+       Java 8 CA Store (Update 121):      OK - Certificate is trusted
+       Microsoft CA Store (12/2017):      OK - Certificate is trusted
+       Mozilla CA Store (12/2017):        OK - Certificate is trusted
        Received Chain:                    *.google.co.il --> Google Internet Authority G3
        Verified Chain:                    *.google.co.il --> Google Internet Authority G3 --> GlobalSign
        Received Chain Contains Anchor:    OK - Anchor certificate not sent
        Received Chain Order:              OK - Order is valid
        Verified Chain contains SHA1:      OK - No SHA1-signed certificate in the verified certificate chain
 
+     Extensions
+       OCSP Must-Staple:                  NOT SUPPORTED - Extension not found
+       Certificate Transparency:          NOT SUPPORTED - Extension not found
+
      OCSP Stapling
-                                          NOT SUPPORTED - Server did not send back an OCSP response.
+                                          NOT SUPPORTED - Server did not send back an OCSP response
 
  * TLSV1 Cipher Suites:
      Preferred:
@@ -57,29 +61,19 @@ Start 2018-01-04 11:07:05.711940
      Preferred:
         TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256             ECDH-256 bits  128 bits                                                                  
      Accepted:
-        TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384             ECDH-256 bits  256 bits                                                                  
-        TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA                ECDH-256 bits  256 bits                                                                  
         TLS_RSA_WITH_AES_256_GCM_SHA384                   -              256 bits                                                                  
         TLS_RSA_WITH_AES_256_CBC_SHA                      -              256 bits                                                                  
+        TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256       -              256 bits                                                                  
+        TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384             ECDH-256 bits  256 bits                                                                  
+        TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA                ECDH-256 bits  256 bits                                                                  
         TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256             ECDH-256 bits  128 bits                                                                  
         TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA                ECDH-256 bits  128 bits                                                                  
-        TLS_RSA_WITH_AES_128_GCM_SHA256                   -              128 bits                                                                  
         TLS_RSA_WITH_AES_128_CBC_SHA                      -              128 bits                                                                  
+        TLS_RSA_WITH_AES_128_GCM_SHA256                   -              128 bits                                                                  
         TLS_RSA_WITH_3DES_EDE_CBC_SHA                     -              112 bits                                                                  
 
- * TLSV1_2 Cipher Suites:
-     Preferred:
-        TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256             ECDH-256 bits  128 bits                                                                  
-     Accepted:
-        TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384             ECDH-256 bits  256 bits                                                                  
-        TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA                ECDH-256 bits  256 bits                                                                  
-        TLS_RSA_WITH_AES_256_GCM_SHA384                   -              256 bits                                                                  
-        TLS_RSA_WITH_AES_256_CBC_SHA                      -              256 bits                                                                  
-        TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256             ECDH-256 bits  128 bits                                                                  
-        TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA                ECDH-256 bits  128 bits                                                                  
-        TLS_RSA_WITH_AES_128_GCM_SHA256                   -              128 bits                                                                  
-        TLS_RSA_WITH_AES_128_CBC_SHA                      -              128 bits                                                                  
-        TLS_RSA_WITH_3DES_EDE_CBC_SHA                     -              112 bits                                                                  
+ * TLSV1_3 Cipher Suites:
+      Server rejected all cipher suites.
 
  * SSLV2 Cipher Suites:
       Server rejected all cipher suites.
@@ -99,8 +93,8 @@ Start 2018-01-04 11:07:05.711940
  * OpenSSL CCS Injection:
                                           OK - Not vulnerable to OpenSSL CCS injection
 
- * Deflate Compression:
-                                          OK - Compression disabled
+ * ROBOT Attack:
+                                          OK - Not vulnerable
 
  * Downgrade Attacks:
        TLS_FALLBACK_SCSV:                 OK - Supported
@@ -108,11 +102,4 @@ Start 2018-01-04 11:07:05.711940
  * Session Renegotiation:
        Client-initiated Renegotiation:    OK - Rejected
        Secure Renegotiation:              OK - Supported
-
- * Resumption Support:
-      With Session IDs:                  OK - Supported (5 successful, 0 failed, 0 errors, 5 total attempts).
-      With TLS Tickets:                  OK - Supported
-
- * Resumption Rate:
-      With Session IDs:                  OK - Supported (100 successful, 0 failed, 0 errors, 100 total attempts).
 

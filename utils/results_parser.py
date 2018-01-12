@@ -22,7 +22,11 @@ class ResultsParser(object):
                                  MandatoryZeroFinalGrade.SSL20_SUPPORTED.value,
                                  MandatoryZeroFinalGrade.OPENSSL_CCS_INJECTION_VULNERABILITY.value,
                                  MandatoryZeroFinalGrade.DROWN_VULNERABILITY.value,
-                                 MandatoryZeroFinalGrade.INSECURE_RENEGOTIATION.value]
+                                 MandatoryZeroFinalGrade.INSECURE_RENEGOTIATION.value,
+                                 MandatoryZeroFinalGrade.HEARTBLEED_VULNERABILITY.value]
+                                 #MandatoryZeroFinalGrade.KEY_UNDER_1024.value]
+
+    grades_cap_repository = []  # TODO: add enums
 
     def __init__(self):
         self.certificate_results = {}

@@ -1,19 +1,19 @@
 import json
 
 from commands.command import Command, ScanResultUnavailable
-from utils.server_rates import ProtocolScoreEnum, CipherScoresEnum, MandatoryZeroFinalGrade
+from utils.server_rates import ProtocolScoreEnum, CipherStrengthScoreEnum, MandatoryZeroFinalGrade
 
 
 class CipherSuitesCommand(Command):
 
     protocol_scores = {"sslv3": ProtocolScoreEnum.SSLv30.value,
                        "tlsv1": ProtocolScoreEnum.TLSv10.value, "tlsv1_1": ProtocolScoreEnum.TLSv11.value,
-                       "tlsv1_2": ProtocolScoreEnum.TLSv12.value}
+                       "tlsv1_2": ProtocolScoreEnum.TLSv12.value, "tlsv1_3": ProtocolScoreEnum.TLSv13.value}
 
-    cipher_strength_scores = {"0": CipherScoresEnum.NoEncryption.value,
-                              "<128": CipherScoresEnum.LessThan128.value,
-                              "<256": CipherScoresEnum.LessThan256.value,
-                              ">=256": CipherScoresEnum.EqualOrGraterThan256.value}
+    cipher_strength_scores = {"0": CipherStrengthScoreEnum.NoEncryption.value,
+                              "<128": CipherStrengthScoreEnum.LessThan128.value,
+                              "<256": CipherStrengthScoreEnum.LessThan256.value,
+                              ">=256": CipherStrengthScoreEnum.EqualOrGraterThan256.value}
 
     def __init__(self, cipher_scan_command):
         super().__init__(cipher_scan_command)

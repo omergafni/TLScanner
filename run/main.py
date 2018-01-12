@@ -1,8 +1,11 @@
 import sys
+
+from commands.robot_command import RobotCommand
+
 sys.path.append("/root/PycharmProjects/SSL-TLS-Tool")
 
 import datetime
-from sslyze.plugins.openssl_cipher_suites_plugin import Sslv20ScanCommand
+from sslyze.plugins.openssl_cipher_suites_plugin import Sslv20ScanCommand, Tlsv13ScanCommand
 from sslyze.plugins.openssl_cipher_suites_plugin import Sslv30ScanCommand
 from sslyze.plugins.openssl_cipher_suites_plugin import Tlsv10ScanCommand
 from sslyze.plugins.openssl_cipher_suites_plugin import Tlsv11ScanCommand
@@ -73,12 +76,13 @@ def main():
     cipher_suites_commands = [CipherSuitesCommand(Tlsv10ScanCommand()),
                               CipherSuitesCommand(Tlsv11ScanCommand()),
                               CipherSuitesCommand(Tlsv12ScanCommand()),
+                              CipherSuitesCommand(Tlsv13ScanCommand()),
                               CipherSuitesCommand(Sslv20ScanCommand()),
                               CipherSuitesCommand(Sslv30ScanCommand())]
 
     # TODO: CompressionCommand(), SessionResumptionSupportCommand(), SessionResumptionRateScanCommand()
     vulnerabilities_commands = [DrownCommand(), PoodleSslCommand(), HeartbleedCommand(),
-                                OpenSslCcsInjectionCommand(),
+                                OpenSslCcsInjectionCommand(), RobotCommand(),
                                 FallbackScsvCommand(), SessionRenegotiationCommand()]
 
     """
@@ -100,7 +104,7 @@ def main():
     print("\n[*] Server result: {}".format(results_parser.get_final_results()))
 
     """
-    Closing
+    Closing:
     """
     output.close()
     print("[*] Check output file for more details.")

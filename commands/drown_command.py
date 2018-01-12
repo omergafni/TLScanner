@@ -10,13 +10,15 @@ class DrownCommand(Command):
         super().__init__(DrownScanCommand())
 
     def get_result_as_json(self):
+
         result = {}
+
         if self.scan_result is None:
             raise ScanResultUnavailable()
 
         if self.scan_result.is_vulnerable_to_drown_attack:
             result[MandatoryZeroFinalGrade.DROWN_VULNERABILITY.value] = "final grade 0"
         else:
-            result["drown vulnerability"] = "OK"
+            result["drown_vulnerability_scan_result"] = "ok"
 
         return json.dumps(result)

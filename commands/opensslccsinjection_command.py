@@ -10,13 +10,15 @@ class OpenSslCcsInjectionCommand(Command):
         super().__init__(OpenSslCcsInjectionScanCommand())
 
     def get_result_as_json(self):
+
         result = {}
+
         if self.scan_result is None:
             raise ScanResultUnavailable()
 
         if self.scan_result.is_vulnerable_to_ccs_injection:
             result[MandatoryZeroFinalGrade.OPENSSL_CCS_INJECTION_VULNERABILITY.value] = "final grade 0"
         else:
-            result["openssl ccs injection"] = "OK"
+            result["openssl_ccs_injection_scan_result"] = "ok"
 
         return json.dumps(result)

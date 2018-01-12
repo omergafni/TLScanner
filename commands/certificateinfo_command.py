@@ -36,15 +36,15 @@ class CertificateInfoCommand(Command):
         # Date validation
         for certificate in self.scan_result.certificate_chain:
             if certificate.not_valid_after < today:
-                result[MandatoryZeroFinalGrade.CERTIFICATE_EXPIRED] = "final grade 0"
+                result[MandatoryZeroFinalGrade.CERTIFICATE_EXPIRED.value] = "final grade 0"
                 return json.dumps(result)
             if certificate.not_valid_before > today:
-                result[MandatoryZeroFinalGrade.CERTIFICATE_NOT_YET_VALID] = "final grade 0"
+                result[MandatoryZeroFinalGrade.CERTIFICATE_NOT_YET_VALID.value] = "final grade 0"
                 return json.dumps(result)
 
         # Certificate is trusted?
         if not self.scan_result.verified_certificate_chain:
-            result[MandatoryZeroFinalGrade.CERTIFICATE_NOT_TRUSTED] = "final grade 0"
+            result[MandatoryZeroFinalGrade.CERTIFICATE_NOT_TRUSTED.value] = "final grade 0"
             return json.dumps(result)
 
         # Checking public key properties
@@ -59,8 +59,10 @@ class CertificateInfoCommand(Command):
 
         if key_size < 512:
             result["key_exchange_score"] = self.key_exchange_scores["<512"]
+            result[MandatoryZeroFinalGrade.KEY_UNDER_1024.value] = "final grade 0"
         elif key_size < 1024:
             result["key_exchange_score"] = self.key_exchange_scores["<1024"]
+            result[MandatoryZeroFinalGrade.KEY_UNDER_1024.value] = "final grade 0"
         elif key_size < 2048:
             result["key_exchange_score"] = self.key_exchange_scores["<2048"]
         elif key_size < 4096:
