@@ -1,23 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2c31ae15-3c3c-4245-9bcd-ed5fcfe7b59d" name="Default" comment="bugs fixed on result_parser cipher compute method">
-      <change beforePath="" afterPath="$PROJECT_DIR$/commands/robot_command.py" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/root.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/root.xml" />
+    <list default="true" id="2c31ae15-3c3c-4245-9bcd-ed5fcfe7b59d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/commands/certificateinfo_command.py" afterPath="$PROJECT_DIR$/commands/certificateinfo_command.py" />
-      <change beforePath="$PROJECT_DIR$/commands/ciphersuites_command.py" afterPath="$PROJECT_DIR$/commands/ciphersuites_command.py" />
-      <change beforePath="$PROJECT_DIR$/commands/drown_command.py" afterPath="$PROJECT_DIR$/commands/drown_command.py" />
-      <change beforePath="$PROJECT_DIR$/commands/fallbackscsv_command.py" afterPath="$PROJECT_DIR$/commands/fallbackscsv_command.py" />
-      <change beforePath="$PROJECT_DIR$/commands/heartbleed_command.py" afterPath="$PROJECT_DIR$/commands/heartbleed_command.py" />
-      <change beforePath="$PROJECT_DIR$/commands/opensslccsinjection_command.py" afterPath="$PROJECT_DIR$/commands/opensslccsinjection_command.py" />
-      <change beforePath="$PROJECT_DIR$/commands/poodlessl_command.py" afterPath="$PROJECT_DIR$/commands/poodlessl_command.py" />
-      <change beforePath="$PROJECT_DIR$/commands/sessionrenegotiation_command.py" afterPath="$PROJECT_DIR$/commands/sessionrenegotiation_command.py" />
-      <change beforePath="$PROJECT_DIR$/output/www.google.co.il" afterPath="$PROJECT_DIR$/output/www.google.co.il" />
-      <change beforePath="$PROJECT_DIR$/run/for_testing.py" afterPath="$PROJECT_DIR$/run/for_testing.py" />
-      <change beforePath="$PROJECT_DIR$/run/main.py" afterPath="$PROJECT_DIR$/run/main.py" />
-      <change beforePath="$PROJECT_DIR$/utils/results_parser.py" afterPath="$PROJECT_DIR$/utils/results_parser.py" />
-      <change beforePath="$PROJECT_DIR$/utils/server_rates.py" afterPath="$PROJECT_DIR$/utils/server_rates.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -647,7 +632,14 @@
       <option name="project" value="LOCAL" />
       <updated>1515579778044</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Added robot_command, json result format update">
+      <created>1515746826696</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1515746826696</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TodoView" selected-index="1">
@@ -715,7 +707,8 @@
     <MESSAGE value="classes break to modules" />
     <MESSAGE value="Added final grades to result_parser" />
     <MESSAGE value="bugs fixed on results sorting method" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugs fixed on results sorting method" />
+    <MESSAGE value="Added robot_command, json result format update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added robot_command, json result format update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
