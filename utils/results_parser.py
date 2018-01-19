@@ -20,7 +20,8 @@ class ResultsParser(object):
     """
     final_grade_caps_repository = {FinalGradeCaps.USING_SHA1_CERTIFICATE.value,
                                    FinalGradeCaps.POODLE_VULNERABILITY.value,
-                                   FinalGradeCaps.TLS_FALLBACK_SCSV_NOT_SUPPORTED.value}
+                                   FinalGradeCaps.TLS_FALLBACK_SCSV_NOT_SUPPORTED.value,
+                                   FinalGradeCaps.SSL3_SUPPORTED.value}
 
     mandatory_zero_repository = [MandatoryZeroFinalGrade.CERTIFICATE_NOT_TRUSTED.value,
                                  MandatoryZeroFinalGrade.CERTIFICATE_NOT_YET_VALID.value,

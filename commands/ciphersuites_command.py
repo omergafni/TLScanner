@@ -1,7 +1,7 @@
 import json
 
 from commands.command import Command, ScanResultUnavailable
-from utils.server_rates import ProtocolScoreEnum, CipherStrengthScoreEnum, MandatoryZeroFinalGrade
+from utils.server_rates import ProtocolScoreEnum, CipherStrengthScoreEnum, MandatoryZeroFinalGrade, FinalGradeCaps
 
 
 class CipherSuitesCommand(Command):
@@ -54,6 +54,9 @@ class CipherSuitesCommand(Command):
             if cipher_name == "sslv2":
                 result[MandatoryZeroFinalGrade.SSL20_SUPPORTED.value] = "final grade 0"
             else:
+                if cipher_name == "sslv3":
+                    result[FinalGradeCaps.SSL3_SUPPORTED.value] = FinalGradeCaps.B.value
+
                 result[cipher_name + '_protocol_score'] = self.protocol_scores[cipher_name]
 
                 # Getting cipher strength score

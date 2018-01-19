@@ -31,11 +31,11 @@ class GradesEnum(object):
     class GradeDescription(Enum):
         A_PLUS = "A+ >> good configuration, no warnings."
         A_MINUS = "A- >> good configuration that have one or more warnings."
-        B = "B >> "  # +parser's description message
-        C = "C >> "  # +parser's description message
-        D = "D >> "  # +parser's description message
-        E = "E >> "  # +parser's description message
-        F = "F >> Server failed: "  # +parser's description message
+        B = "B >> "  # + parser's description message
+        C = "C >> "  # + parser's description message
+        D = "D >> "  # + parser's description message
+        E = "E >> "  # + parser's description message
+        F = "F >> Server failed: "  # + parser's description message
         T = "T >> site certificate is not trusted."
 
 
@@ -131,14 +131,14 @@ class FinalGradeCaps(Enum):
     """
     Any of the following will cause a final grades constraint:
     """
-    USING_SHA1_CERTIFICATE = "server uses SHA1 certificate"
-    POODLE_VULNERABILITY = "vulnerable to POODLE"
-    TLS_FALLBACK_SCSV_NOT_SUPPORTED = "server does not support TLS_FALLBACK_SCSV"
+    USING_SHA1_CERTIFICATE = "server uses SHA1 certificate"  # A- cap
+    POODLE_VULNERABILITY = "vulnerable to POODLE"  # C cap
+    TLS_FALLBACK_SCSV_NOT_SUPPORTED = "server does not support TLS_FALLBACK_SCSV"  # A- cap
+    SSL3_SUPPORTED = "server supports SSL 3.0"  # B cap
 
     # TODO: implementation for the list below:
     # Vulnerability to the BEAST attack caps the grade at B.
     # Vulnerability to the CRIME attack caps the grade at B.
     # Support for TLS 1.2 is now required to get the A grade. Without, the grade is capped a B.
     # Keys below 2048 bits (e.g., 1024) are now considered weak, and the grade capped at B.
-    # Cap to B if SSL 3 is supported.
     # Cap to C if not supporting TLS 1.2.

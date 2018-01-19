@@ -1,6 +1,6 @@
 ##############################################
 Output result for host: www.google.co.il
-Start 2018-01-19 12:56:00.494652
+Start 2018-01-19 13:15:32.737270
 ##############################################
 
  * Certificate Information:
@@ -62,14 +62,14 @@ Start 2018-01-19 12:56:00.494652
         TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256             ECDH-256 bits  128 bits                                                                  
      Accepted:
         TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA                ECDH-256 bits  256 bits                                                                  
-        TLS_RSA_WITH_AES_256_GCM_SHA384                   -              256 bits                                                                  
         TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384             ECDH-256 bits  256 bits                                                                  
-        TLS_RSA_WITH_AES_256_CBC_SHA                      -              256 bits                                                                  
         TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256       -              256 bits                                                                  
+        TLS_RSA_WITH_AES_256_CBC_SHA                      -              256 bits                                                                  
+        TLS_RSA_WITH_AES_256_GCM_SHA384                   -              256 bits                                                                  
         TLS_RSA_WITH_AES_128_GCM_SHA256                   -              128 bits                                                                  
-        TLS_RSA_WITH_AES_128_CBC_SHA                      -              128 bits                                                                  
         TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA                ECDH-256 bits  128 bits                                                                  
         TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256             ECDH-256 bits  128 bits                                                                  
+        TLS_RSA_WITH_AES_128_CBC_SHA                      -              128 bits                                                                  
         TLS_RSA_WITH_3DES_EDE_CBC_SHA                     -              112 bits                                                                  
 
  * TLSV1_3 Cipher Suites:

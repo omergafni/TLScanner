@@ -19,7 +19,10 @@ class SessionRenegotiationCommand(Command):
         else:
             result["secure_renegotiation_vulnerability_scan_result"] = "ok"
 
-        # TODO: 'accepts_client_renegotiation' can be also checked here
+        if self.scan_result.accepts_client_renegotiation:
+            result[MandatoryZeroFinalGrade.INSECURE_RENEGOTIATION.value] = "final grade 0"
+        else:
+            result["client_renegotiation_rejected"] = "ok"
 
         return json.dumps(result)
 
