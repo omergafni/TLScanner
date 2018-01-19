@@ -10,11 +10,17 @@ class CertificateInfoCommand(Command):
 
     def __init__(self):
         super().__init__(CertificateInfoScanCommand())
-        self.key_exchange_scores = {"<512": KeyExchangeScoreEnum.LessThan512.value,
-                                    "<1024": KeyExchangeScoreEnum.LessThan1024.value,
-                                    "<2048": KeyExchangeScoreEnum.LessThan2048.value,
-                                    "<4096": KeyExchangeScoreEnum.LessThan4096.value,
-                                    ">=4096": KeyExchangeScoreEnum.EqualOrGreaterThan4096.value}
+        self.rsa_dh_key_exchange_scores = {"<512": KeyExchangeScoreEnum.LessThan512.value,
+                                           "<1024": KeyExchangeScoreEnum.LessThan1024.value,
+                                           "<2048": KeyExchangeScoreEnum.LessThan2048.value,
+                                           "<4096": KeyExchangeScoreEnum.LessThan4096.value,
+                                           ">=4096": KeyExchangeScoreEnum.EqualOrGreaterThan4096.value}
+
+        self.elliptic_curve_key_exchange_scores = {"<160": KeyExchangeScoreEnum.EC_LessThan160.value,
+                                                   "<224": KeyExchangeScoreEnum.EC_LessThan224.value,
+                                                   "<256": KeyExchangeScoreEnum.EC_LessThan256.value,
+                                                   "<384": KeyExchangeScoreEnum.EC_LessThan384.value,
+                                                   ">=384": KeyExchangeScoreEnum.EC_EqualOrGreaterThan384.value}
 
     def get_result_as_json(self):
 
@@ -60,20 +66,30 @@ class CertificateInfoCommand(Command):
         # necessary? -> signature_algorithm_name = certificate.signature_hash_algorithm.name  # (e.g., sha256)
         if isinstance(public_key, EllipticCurvePublicKey):
             key_size = public_key.curve.key_size
+            if key_size < 160:
+                result["certificate_key_exchange_score"] = self.elliptic_curve_key_exchange_scores["<160"]
+            elif key_size < 224:
+                result["certificate_key_exchange_score"] = self.elliptic_curve_key_exchange_scores["<224"]
+            elif key_size < 256:
+                result["certificate_key_exchange_score"] = self.elliptic_curve_key_exchange_scores["<256"]
+            elif key_size < 384:
+                result["certificate_key_exchange_score"] = self.elliptic_curve_key_exchange_scores["<384"]
+            else:  # key_size >= 384:
+                result["certificate_key_exchange_score"] = self.elliptic_curve_key_exchange_scores[">=384"]
         else:
             key_size = public_key.key_size
-
-        if key_size < 512:
-            result["certificate_key_exchange_score"] = self.key_exchange_scores["<512"]
-            result[MandatoryZeroFinalGrade.KEY_UNDER_1024.value] = "final grade 0"
-        elif key_size < 1024:
-            result["certificate_key_exchange_score"] = self.key_exchange_scores["<1024"]
-            result[MandatoryZeroFinalGrade.KEY_UNDER_1024.value] = "final grade 0"
-        elif key_size < 2048:
-            result["certificate_key_exchange_score"] = self.key_exchange_scores["<2048"]
-        elif key_size < 4096:
-            result["certificate_key_exchange_score"] = self.key_exchange_scores["<4096"]
-        else:  # key_size >= 4096:
-            result["certificate_key_exchange_score"] = self.key_exchange_scores[">=4096"]
+            if key_size < 512:
+                result["certificate_key_exchange_score"] = self.rsa_dh_key_exchange_scores["<512"]
+                result[MandatoryZeroFinalGrade.KEY_UNDER_1024.value] = "final grade 0"
+            elif key_size < 1024:
+                result["certificate_key_exchange_score"] = self.rsa_dh_key_exchange_scores["<1024"]
+                result[MandatoryZeroFinalGrade.KEY_UNDER_1024.value] = "final grade 0"
+            elif key_size < 2048:
+                result["certificate_key_exchange_score"] = self.rsa_dh_key_exchange_scores["<2048"]
+                result[FinalGradeCaps.KEY_BELOW_2048.value] = FinalGradeCaps.B.value
+            elif key_size < 4096:
+                result["certificate_key_exchange_score"] = self.rsa_dh_key_exchange_scores["<4096"]
+            else:  # key_size >= 4096:
+                result["certificate_key_exchange_score"] = self.rsa_dh_key_exchange_scores[">=4096"]
 
         return json.dumps(result)

@@ -5,11 +5,10 @@
       <change beforePath="" afterPath="$PROJECT_DIR$/run/servers_list.txt" />
       <change beforePath="" afterPath="$PROJECT_DIR$/run/servers_list_test.py" />
       <change beforePath="" afterPath="$PROJECT_DIR$/run/servers_sublist.txt" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/root.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/root.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/commands/ciphersuites_command.py" afterPath="$PROJECT_DIR$/commands/ciphersuites_command.py" />
-      <change beforePath="$PROJECT_DIR$/commands/sessionrenegotiation_command.py" afterPath="$PROJECT_DIR$/commands/sessionrenegotiation_command.py" />
+      <change beforePath="$PROJECT_DIR$/commands/certificateinfo_command.py" afterPath="$PROJECT_DIR$/commands/certificateinfo_command.py" />
       <change beforePath="$PROJECT_DIR$/output/www.google.co.il" afterPath="$PROJECT_DIR$/output/www.google.co.il" />
-      <change beforePath="$PROJECT_DIR$/utils/results_parser.py" afterPath="$PROJECT_DIR$/utils/results_parser.py" />
       <change beforePath="$PROJECT_DIR$/utils/server_rates.py" afterPath="$PROJECT_DIR$/utils/server_rates.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,7 +19,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/TLScanner$main.coverage" NAME="main Coverage Results" MODIFIED="1516370208476" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
+    <SUITE FILE_PATH="coverage/TLScanner$main.coverage" NAME="main Coverage Results" MODIFIED="1516373870736" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
     <SUITE FILE_PATH="coverage/TLScanner$for_testing.coverage" NAME="for_testing Coverage Results" MODIFIED="1515746095788" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/" />
     <SUITE FILE_PATH="coverage/TLScanner$certificateinfo_command.coverage" NAME="certificateinfo_command Coverage Results" MODIFIED="1515751248682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/commands" />
     <SUITE FILE_PATH="coverage/TLScanner$poodlessl_command.coverage" NAME="poodlessl_command Coverage Results" MODIFIED="1515752022138" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/commands" />
@@ -31,73 +30,22 @@
       <file leaf-file-name="results_parser.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/utils/results_parser.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-791">
-              <caret line="23" column="70" lean-forward="false" selection-start-line="23" selection-start-column="70" selection-end-line="23" selection-end-column="70" />
+            <state relative-caret-position="742">
+              <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
                 <element signature="e#2117#2328#0" expanded="false" />
                 <element signature="e#2396#3158#0" expanded="false" />
                 <element signature="e#3206#3481#0" expanded="false" />
-                <element signature="e#3533#3714#0" expanded="false" />
                 <element signature="e#3769#4077#0" expanded="false" />
+                <element signature="e#4132#4544#0" expanded="false" />
+                <element signature="e#4613#4992#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="www.mydavinci.nl" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/output/www.mydavinci.nl">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="103" column="0" lean-forward="true" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="session_renegotiation_plugin.py" pinned="false" current-in-tab="false">
-        <entry file="file:///usr/local/lib/python3.6/dist-packages/sslyze/plugins/session_renegotiation_plugin.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="598">
-              <caret line="134" column="48" lean-forward="true" selection-start-line="134" selection-start-column="48" selection-end-line="134" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="poodlessl_command.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/commands/poodlessl_command.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="drown_plugin.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plugins/drown_plugin.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="50" column="40" lean-forward="true" selection-start-line="50" selection-start-column="40" selection-end-line="50" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ciphersuites_command.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/commands/ciphersuites_command.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="838">
-              <caret line="58" column="0" lean-forward="true" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sessionrenegotiation_command.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sessionrenegotiation_command.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/commands/sessionrenegotiation_command.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="396">
@@ -107,31 +55,81 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="drown_command.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/commands/drown_command.py">
+      <file leaf-file-name="WIKIPEDIA.ORG" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/output/WIKIPEDIA.ORG">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="21" column="59" lean-forward="false" selection-start-line="21" selection-start-column="59" selection-end-line="21" selection-end-column="59" />
+            <state relative-caret-position="125">
+              <caret line="14" column="42" lean-forward="false" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="heartbleed_command.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/commands/heartbleed_command.py">
+      <file leaf-file-name="www.google.co.il" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/output/www.google.co.il">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="19" column="73" lean-forward="false" selection-start-line="19" selection-start-column="73" selection-end-line="19" selection-end-column="73" />
+            <state relative-caret-position="1314">
+              <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="server_rates.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="servers_sublist.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/run/servers_sublist.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="certificateinfo_command.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/commands/certificateinfo_command.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="703">
+              <caret line="90" column="84" lean-forward="true" selection-start-line="90" selection-start-column="84" selection-end-line="90" selection-end-column="84" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wikipedia.org" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/output/wikipedia.org">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="servers_list_test.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/run/servers_list_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="certificate_info_plugin.py" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/local/lib/python3.6/dist-packages/sslyze/plugins/certificate_info_plugin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="257">
+              <caret line="648" column="33" lean-forward="true" selection-start-line="648" selection-start-column="0" selection-end-line="649" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="server_rates.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/utils/server_rates.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-86">
-              <caret line="110" column="38" lean-forward="true" selection-start-line="110" selection-start-column="38" selection-end-line="110" selection-end-column="38" />
+            <state relative-caret-position="631">
+              <caret line="146" column="49" lean-forward="false" selection-start-line="146" selection-start-column="49" selection-end-line="146" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -148,7 +146,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>scanCommand</find>
       <find>client_auth</find>
       <find>commands</find>
       <find>run_sca</find>
@@ -178,6 +175,7 @@
       <find>bleed</find>
       <find>hannoverlifere-takaful.com</find>
       <find>hannoverre.info</find>
+      <find>elliptic</find>
     </findStrings>
   </component>
   <component name="Git.Rebase.Settings">
@@ -233,14 +231,15 @@
         <option value="$PROJECT_DIR$/run/servers_list_test.py" />
         <option value="$PROJECT_DIR$/run/servers_list.txt" />
         <option value="$PROJECT_DIR$/run/servers_sublist.txt" />
-        <option value="$PROJECT_DIR$/commands/certificateinfo_command.py" />
         <option value="$PROJECT_DIR$/run/main.py" />
         <option value="$PROJECT_DIR$/commands/fallbackscsv_command.py" />
         <option value="$PROJECT_DIR$/commands/poodlessl_command.py" />
         <option value="$PROJECT_DIR$/utils/results_parser.py" />
         <option value="$PROJECT_DIR$/commands/ciphersuites_command.py" />
-        <option value="$PROJECT_DIR$/utils/server_rates.py" />
         <option value="$PROJECT_DIR$/commands/sessionrenegotiation_command.py" />
+        <option value="$PROJECT_DIR$/output/WIKIPEDIA.ORG" />
+        <option value="$PROJECT_DIR$/utils/server_rates.py" />
+        <option value="$PROJECT_DIR$/commands/certificateinfo_command.py" />
       </list>
     </option>
   </component>
@@ -425,7 +424,7 @@
       <module name="TLScanner" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/run/main.py" />
-      <option name="PARAMETERS" value="www.mydavinci.nl" />
+      <option name="PARAMETERS" value="wikipedia.org" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -692,7 +691,14 @@
       <option name="project" value="LOCAL" />
       <updated>1516359500160</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Added client-renegotiation check.">
+      <created>1516371106830</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1516371106830</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TodoView" selected-index="1">
@@ -712,7 +718,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22966507" sideWeight="0.5146413" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38019168" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38125667" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32854864" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17916666" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -764,10 +770,18 @@
     <MESSAGE value="bugs fixed on results sorting method" />
     <MESSAGE value="Added robot_command, json result format update" />
     <MESSAGE value="Added caps support to result_parser module." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added caps support to result_parser module." />
+    <MESSAGE value="Added client-renegotiation check." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added client-renegotiation check." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/utils/results_parser.py</url>
+          <line>129</line>
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
           <properties notifyOnTerminate="true" exception="BaseException">
@@ -775,13 +789,11 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="104" />
+      <option name="time" value="107" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/plugins/__init__.py" />
-    <entry file="file:///usr/local/lib/python3.5/dist-packages/sslyze/__init__.py" />
     <entry file="file:///usr/local/lib/python3.5/dist-packages/sslyze/__main__.py" />
     <entry file="file:///usr/local/lib/python3.5/dist-packages/sslyze/synchronous_scanner.py" />
     <entry file="file://$PROJECT_DIR$/output/mohconsole.health.gov.il" />
@@ -838,14 +850,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file:///usr/local/lib/python3.6/dist-packages/sslyze/plugins/certificate_info_plugin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="11214">
-          <caret line="656" column="72" lean-forward="false" selection-start-line="656" selection-start-column="61" selection-end-line="656" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/lib/python3.6/dist-packages/sslyze/plugins/robot_plugin.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7272">
@@ -878,14 +882,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run/servers_list_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/output/es-rueck.biz">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-504">
@@ -910,14 +906,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/run/servers_sublist.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/run/servers_list.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1034">
@@ -938,14 +926,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
           <caret line="3" column="6" lean-forward="true" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/output/www.google.co.il">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1306">
-          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -991,14 +971,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="15" column="29" lean-forward="false" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/commands/certificateinfo_command.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="30" column="109" lean-forward="false" selection-start-line="30" selection-start-column="109" selection-end-line="30" selection-end-column="109" />
           <folding />
         </state>
       </provider>
@@ -1059,29 +1031,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/utils/server_rates.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-86">
-          <caret line="110" column="38" lean-forward="true" selection-start-line="110" selection-start-column="38" selection-end-line="110" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/results_parser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-791">
-          <caret line="23" column="70" lean-forward="false" selection-start-line="23" selection-start-column="70" selection-end-line="23" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#2117#2328#0" expanded="false" />
-            <element signature="e#2396#3158#0" expanded="false" />
-            <element signature="e#3206#3481#0" expanded="false" />
-            <element signature="e#3533#3714#0" expanded="false" />
-            <element signature="e#3769#4077#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/commands/ciphersuites_command.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="838">
@@ -1096,6 +1045,86 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run/servers_sublist.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="26" lean-forward="false" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/run/servers_list_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/results_parser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="742">
+          <caret line="129" column="0" lean-forward="false" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#2117#2328#0" expanded="false" />
+            <element signature="e#2396#3158#0" expanded="false" />
+            <element signature="e#3206#3481#0" expanded="false" />
+            <element signature="e#3769#4077#0" expanded="false" />
+            <element signature="e#4132#4544#0" expanded="false" />
+            <element signature="e#4613#4992#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/www.google.co.il">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1314">
+          <caret line="73" column="0" lean-forward="false" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/WIKIPEDIA.ORG">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="14" column="42" lean-forward="false" selection-start-line="14" selection-start-column="42" selection-end-line="14" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.6/dist-packages/sslyze/plugins/certificate_info_plugin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="257">
+          <caret line="648" column="33" lean-forward="true" selection-start-line="648" selection-start-column="0" selection-end-line="649" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/output/wikipedia.org">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/commands/certificateinfo_command.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="703">
+          <caret line="90" column="84" lean-forward="true" selection-start-line="90" selection-start-column="84" selection-end-line="90" selection-end-column="84" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/utils/server_rates.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="631">
+          <caret line="146" column="49" lean-forward="false" selection-start-line="146" selection-start-column="49" selection-end-line="146" selection-end-column="49" />
           <folding />
         </state>
       </provider>

@@ -24,9 +24,9 @@ class GradesEnum(object):
         F = 0
 
     class GradeFactor(Enum):
-        PROTOCOL_FACTOR = 0.4
+        PROTOCOL_FACTOR = 0.3
         KEY_FACTOR = 0.3
-        CIPHER_FACTOR = 0.3
+        CIPHER_FACTOR = 0.4
 
     class GradeDescription(Enum):
         A_PLUS = "A+ >> good configuration, no warnings."
@@ -63,18 +63,21 @@ class KeyExchangeScoreEnum(Enum):
     Key exchange:
         Weak key (Debian OpenSSL flaw): 	                         0  # TODO: implement
         Anonymous key exchange (no authentication)	                 0  # TODO: implement
-        Key or DH parameter strength < 512 bits	                     20
         Exportable key exchange (limited to 512 bits)	             40 # TODO: implement
-        Key or DH parameter strength < 1024 bits (e.g., 512)	     40
-        Key or DH parameter strength < 2048 bits (e.g., 1024)	     80
-        Key or DH parameter strength < 4096 bits (e.g., 2048)	     90
-        Key or DH parameter strength >= 4096 bits (e.g., 4096)	     100
     """
+    # RSA & Diffie-Hellman keys:
     LessThan512 = 20
     LessThan1024 = 40
     LessThan2048 = 80
     LessThan4096 = 90
     EqualOrGreaterThan4096 = 100
+
+    # Elliptic Curve keys:
+    EC_LessThan160 = 20
+    EC_LessThan224 = 40
+    EC_LessThan256 = 80
+    EC_LessThan384 = 90
+    EC_EqualOrGreaterThan384 = 100
 
 
 class CipherStrengthScoreEnum(Enum):
@@ -107,6 +110,7 @@ class MandatoryZeroFinalGrade(Enum):
     INSECURE_RENEGOTIATION = "server allowed insecure renegotiation"
     KEY_UNDER_1024 = "server's key is insecure (below 1024 bits)"
     HEARTBLEED_VULNERABILITY = "vulnerable to Heartbleed"
+
     # TODO: implementation for the list below:
     # Use of a self-signed certificate
     # Use of a revoked certificate
@@ -131,10 +135,16 @@ class FinalGradeCaps(Enum):
     """
     Any of the following will cause a final grades constraint:
     """
-    USING_SHA1_CERTIFICATE = "server uses SHA1 certificate"  # A- cap
-    POODLE_VULNERABILITY = "vulnerable to POODLE"  # C cap
+    # A- caps:
+    USING_SHA1_CERTIFICATE = "server uses SHA1 certificate"
     TLS_FALLBACK_SCSV_NOT_SUPPORTED = "server does not support TLS_FALLBACK_SCSV"  # A- cap
-    SSL3_SUPPORTED = "server supports SSL 3.0"  # B cap
+
+    # B caps:
+    SSL3_SUPPORTED = "server supports SSL 3.0"
+    KEY_BELOW_2048 = "public key below 2048 bits"
+
+    # C caps:
+    POODLE_VULNERABILITY = "vulnerable to POODLE"
 
     # TODO: implementation for the list below:
     # Vulnerability to the BEAST attack caps the grade at B.
