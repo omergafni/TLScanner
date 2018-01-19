@@ -1,16 +1,16 @@
 ##############################################
 Output result for host: www.google.co.il
-Start 2018-01-12 10:40:43.352271
+Start 2018-01-19 12:56:00.494652
 ##############################################
 
  * Certificate Information:
      Content
-       SHA1 Fingerprint:                  9feea2bfd07c24ef5b88e5af582b3162dbe0cd39
+       SHA1 Fingerprint:                  95d078023d89387b191bdb2c0cfde65ff6674139
        Common Name:                       *.google.co.il
        Issuer:                            Google Internet Authority G3
-       Serial Number:                     385886662016902286
-       Not Before:                        2017-12-13 13:51:25
-       Not After:                         2018-03-07 13:02:00
+       Serial Number:                     3983473244809266391
+       Not Before:                        2018-01-10 10:55:09
+       Not After:                         2018-04-04 09:41:00
        Signature Algorithm:               sha256
        Public Key Algorithm:              RSA
        Key Size:                          2048
@@ -61,15 +61,15 @@ Start 2018-01-12 10:40:43.352271
      Preferred:
         TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256             ECDH-256 bits  128 bits                                                                  
      Accepted:
+        TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA                ECDH-256 bits  256 bits                                                                  
         TLS_RSA_WITH_AES_256_GCM_SHA384                   -              256 bits                                                                  
+        TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384             ECDH-256 bits  256 bits                                                                  
         TLS_RSA_WITH_AES_256_CBC_SHA                      -              256 bits                                                                  
         TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256       -              256 bits                                                                  
-        TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384             ECDH-256 bits  256 bits                                                                  
-        TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA                ECDH-256 bits  256 bits                                                                  
-        TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256             ECDH-256 bits  128 bits                                                                  
-        TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA                ECDH-256 bits  128 bits                                                                  
-        TLS_RSA_WITH_AES_128_CBC_SHA                      -              128 bits                                                                  
         TLS_RSA_WITH_AES_128_GCM_SHA256                   -              128 bits                                                                  
+        TLS_RSA_WITH_AES_128_CBC_SHA                      -              128 bits                                                                  
+        TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA                ECDH-256 bits  128 bits                                                                  
+        TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256             ECDH-256 bits  128 bits                                                                  
         TLS_RSA_WITH_3DES_EDE_CBC_SHA                     -              112 bits                                                                  
 
  * TLSV1_3 Cipher Suites:

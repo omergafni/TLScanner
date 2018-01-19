@@ -25,7 +25,7 @@ class RobotCommand(Command):
             result["robot_scan_result"] = 'ok'
         elif self.scan_result.robot_result_enum == RobotScanResultEnum.NOT_VULNERABLE_RSA_NOT_SUPPORTED:
             result["robot_scan_result"] = 'ok'
-        else: # robot_result_enum == RobotScanResultEnum.UNKNOWN_INCONSISTENT_RESULTS:
+        else:  # robot_result_enum == RobotScanResultEnum.UNKNOWN_INCONSISTENT_RESULTS:
             result["robot_scan_result"] = 'unknown'
 
         return json.dumps(result)

@@ -3,7 +3,9 @@
     <words>
       <w>heartbleed</w>
       <w>scsv</w>
+      <w>sslv</w>
       <w>ticketbleed</w>
+      <w>tlsv</w>
     </words>
   </dictionary>
 </component>

@@ -1,8 +1,5 @@
 import sys
-
-from commands.robot_command import RobotCommand
-
-sys.path.append("/root/PycharmProjects/SSL-TLS-Tool")
+sys.path.append("/usr/local/lib/python3.6/dist-packages")
 
 import datetime
 from sslyze.plugins.openssl_cipher_suites_plugin import Sslv20ScanCommand, Tlsv13ScanCommand
@@ -14,6 +11,7 @@ from sslyze.server_connectivity import ServerConnectivityError
 from sslyze.server_connectivity import ServerConnectivityInfo
 from sslyze.synchronous_scanner import SynchronousScanner
 
+from commands.robot_command import RobotCommand
 from commands.certificateinfo_command import CertificateInfoCommand
 from commands.ciphersuites_command import CipherSuitesCommand
 from commands.drown_command import DrownCommand
@@ -112,7 +110,18 @@ def main():
 
 
 if __name__ == '__main__':
-    # sys.path.append("/root/PycharmProjects/SSL-TLS-Tool/plugins")
+    # with open('run/servers_sublist.txt', 'r') as f:
+    #     line = f.readline()
+    #     counter = 0
+    #     while line:
+    #         try:
+    #             print(str(counter))
+    #             counter += 1
+    #             main(line.rstrip())
+    #             line = f.readline()
+    #         except Exception as e:
+    #             line = f.readline()
+    #             print(e)
     main()
 
 

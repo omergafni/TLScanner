@@ -3,7 +3,7 @@ import json
 from cryptography.hazmat.primitives.asymmetric.ec import EllipticCurvePublicKey
 from sslyze.plugins.certificate_info_plugin import CertificateInfoScanCommand
 from commands.command import Command, ScanResultUnavailable
-from utils.server_rates import KeyExchangeScoreEnum, MandatoryZeroFinalGrade
+from utils.server_rates import KeyExchangeScoreEnum, MandatoryZeroFinalGrade, FinalGradeCaps
 
 
 class CertificateInfoCommand(Command):
@@ -19,6 +19,8 @@ class CertificateInfoCommand(Command):
     def get_result_as_json(self):
 
         today = datetime.datetime.now()
+        today_plus_30 = today + datetime.timedelta(+30)
+        today_plus_7 = today + datetime.timedelta(+7)
         result = {}
 
         if self.scan_result is None:
@@ -26,7 +28,7 @@ class CertificateInfoCommand(Command):
 
         # Using weak SHA1
         if self.scan_result.has_sha1_in_certificate_chain:
-            result["certificate_info_sha1"] = "cap to A-"
+            result[FinalGradeCaps.AMinusCap.USING_SHA1_CERTIFICATE.value] = FinalGradeCaps.Caps.A_MINUS.value
 
         # Certificate hostname mismatch
         if not self.scan_result.certificate_matches_hostname:
@@ -41,6 +43,10 @@ class CertificateInfoCommand(Command):
             if certificate.not_valid_before > today:
                 result[MandatoryZeroFinalGrade.CERTIFICATE_NOT_YET_VALID.value] = "final grade 0"
                 return json.dumps(result)
+            if certificate.not_valid_after < today_plus_7:
+                result["certificate_date_validation_warning"] = "expired in 7 days or less"
+            elif certificate.not_valid_after < today_plus_30:
+                result["certificate_date_validation_caution"] = "expired in 30 days or less"
 
         # Certificate is trusted?
         if not self.scan_result.verified_certificate_chain:
@@ -58,16 +64,16 @@ class CertificateInfoCommand(Command):
             key_size = public_key.key_size
 
         if key_size < 512:
-            result["key_exchange_score"] = self.key_exchange_scores["<512"]
+            result["certificate_key_exchange_score"] = self.key_exchange_scores["<512"]
             result[MandatoryZeroFinalGrade.KEY_UNDER_1024.value] = "final grade 0"
         elif key_size < 1024:
-            result["key_exchange_score"] = self.key_exchange_scores["<1024"]
+            result["certificate_key_exchange_score"] = self.key_exchange_scores["<1024"]
             result[MandatoryZeroFinalGrade.KEY_UNDER_1024.value] = "final grade 0"
         elif key_size < 2048:
-            result["key_exchange_score"] = self.key_exchange_scores["<2048"]
+            result["certificate_key_exchange_score"] = self.key_exchange_scores["<2048"]
         elif key_size < 4096:
-            result["key_exchange_score"] = self.key_exchange_scores["<4096"]
+            result["certificate_key_exchange_score"] = self.key_exchange_scores["<4096"]
         else:  # key_size >= 4096:
-            result["key_exchange_score"] = self.key_exchange_scores[">=4096"]
+            result["certificate_key_exchange_score"] = self.key_exchange_scores[">=4096"]
 
         return json.dumps(result)

@@ -20,8 +20,6 @@ class CipherSuitesCommand(Command):
 
     @classmethod
     def get_cipher_strength_score(cls, min_cipher_key, max_cipher_key):
-        # min_score = -1
-        # max_score = -1
         if min_cipher_key == 0:
             min_score = cls.cipher_strength_scores["0"]
         elif min_cipher_key < 128:
@@ -63,7 +61,7 @@ class CipherSuitesCommand(Command):
                     supported_cipher_key_sizes.append(cipher.key_size)
                 cipher_strength_score = self.get_cipher_strength_score(min(supported_cipher_key_sizes),
                                                                        max(supported_cipher_key_sizes))
-                result[cipher_name + "_cipher_strength_score"] = cipher_strength_score
+                result[cipher_name + "_protocol_cipher_strength_score"] = cipher_strength_score
         else:
             pass  # No score to be added
 

@@ -1,6 +1,7 @@
 import json
 from sslyze.plugins.fallback_scsv_plugin import FallbackScsvScanCommand
 from commands.command import ScanResultUnavailable, Command
+from utils.server_rates import FinalGradeCaps
 
 
 class FallbackScsvCommand(Command):
@@ -14,7 +15,7 @@ class FallbackScsvCommand(Command):
             raise ScanResultUnavailable()
 
         if not self.scan_result.supports_fallback_scsv:
-            result["supports_fallback_scsv_scan_result"] = "cap to A-"
+            result[FinalGradeCaps.TLS_FALLBACK_SCSV_NOT_SUPPORTED.value] = FinalGradeCaps.A_MINUS.value
         else:
             result["supports_fallback_scsv_scan_result"] = "ok"
 

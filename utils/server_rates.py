@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class GradesEnum(Enum):
+class GradesEnum(object):
     """
     Letter grade translation:
     A - if score >= 80
@@ -15,19 +15,28 @@ class GradesEnum(Enum):
 
     ** Implementation is in ResultsParser class **
     """
+    class GradeValue(Enum):
+        A = 80
+        B = 65
+        C = 50
+        D = 35
+        E = 20
+        F = 0
 
-    PROTOCOL_FACTOR = 0.4
-    KEY_FACTOR = 0.3
-    CIPHER_FACTOR = 0.3
+    class GradeFactor(Enum):
+        PROTOCOL_FACTOR = 0.4
+        KEY_FACTOR = 0.3
+        CIPHER_FACTOR = 0.3
 
-    A_PLUS = "A+ >> good configuration, no warnings."
-    A_MINUS = "A- >> good configuration that have one or more warnings."
-    B = "B >> "  # +parser's description message
-    C = "C >> "  # +parser's description message
-    E = "E >> "  # +parser's description message
-    D = "D >> "  # +parser's description message
-    F = "F >> "  # +parser's description message
-    T = "T >> site certificate is not trusted."
+    class GradeDescription(Enum):
+        A_PLUS = "A+ >> good configuration, no warnings."
+        A_MINUS = "A- >> good configuration that have one or more warnings."
+        B = "B >> "  # +parser's description message
+        C = "C >> "  # +parser's description message
+        D = "D >> "  # +parser's description message
+        E = "E >> "  # +parser's description message
+        F = "F >> Server failed: "  # +parser's description message
+        T = "T >> site certificate is not trusted."
 
 
 class ProtocolScoreEnum(Enum):
@@ -111,15 +120,22 @@ class MandatoryZeroFinalGrade(Enum):
     # - WoSign/StartCom certificates distrusted, will get 'T' grade.
 
 
-class FinalGradesCaps(Enum):
+class FinalGradeCaps(Enum):
+
+    A_MINUS = "cap to A-"
+    B = "cap to B"
+    C = "cap to C"
+    D = "cap to D"
+    E = "cap to E"
+
     """
     Any of the following will cause a final grades constraint:
     """
+    USING_SHA1_CERTIFICATE = "server uses SHA1 certificate"
+    POODLE_VULNERABILITY = "vulnerable to POODLE"
+    TLS_FALLBACK_SCSV_NOT_SUPPORTED = "server does not support TLS_FALLBACK_SCSV"
 
     # TODO: implementation for the list below:
-    # **V** Servers that use SHA1 certificates can't get an A+. **V**
-    # **V** Cap to C if vulnerable to POODLE. **V**
-    # **V** Don’t award A+ to servers that don’t support TLS_FALLBACK_SCSV. **V**
     # Vulnerability to the BEAST attack caps the grade at B.
     # Vulnerability to the CRIME attack caps the grade at B.
     # Support for TLS 1.2 is now required to get the A grade. Without, the grade is capped a B.

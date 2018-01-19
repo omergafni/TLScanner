@@ -1,6 +1,7 @@
 import json
 from commands.command import Command, ScanResultUnavailable
 from plugins.poodlessl_plugin import PoodleSslScanCommand
+from utils.server_rates import FinalGradeCaps
 
 
 class PoodleSslCommand(Command):
@@ -16,7 +17,7 @@ class PoodleSslCommand(Command):
             raise ScanResultUnavailable()
 
         if self.scan_result.is_vulnerable_to_poodle_ssl:
-            result["poodle_vulnerability_scan_result"] = "cap to C"
+            result[FinalGradeCaps.POODLE_VULNERABILITY.value] = FinalGradeCaps.C.value
         else:
             result["poodle_vulnerability_scan_result"] = "ok"
 
